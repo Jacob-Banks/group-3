@@ -17,6 +17,9 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Appointment from "./pages/Appointment";
 import About from "./pages/About";
+import ContactForm from "./components/Contact";
+
+
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -49,6 +52,7 @@ function App() {
               <Route exact path="/Services/" component={Services} />
               <Route exact path="/Appointment/" component={Appointment} />
               <Route exact path="/About/" component={About} />
+              <Route exact path="/Contact" component={ContactForm} />
               <Route component={NoMatch} />
             </Switch>
           </div>
