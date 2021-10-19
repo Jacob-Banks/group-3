@@ -12,12 +12,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import Services from "./pages/Services";
+// import Profile from "./components/Profile"; CONVERT PROFILE PAGE TO A COMPONENT ONCE IT WORKS ??
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Appointment from "./pages/Appointment";
 import About from "./pages/About";
-import ContactForm from "./components/Contact";
+import Contact from "./pages/Contact";
 
 
 const httpLink = createHttpLink({
@@ -52,7 +53,7 @@ function App() {
               <Route exact path="/Services/" component={Services} />
               <Route exact path="/Appointment/" component={Appointment} />
               <Route exact path="/About/" component={About} />
-              <Route exact path="/Contact" component={ContactForm} />
+              <Route exact path="/Contact" component={Contact} />
               <Route component={NoMatch} />
             </Switch>
           </div>

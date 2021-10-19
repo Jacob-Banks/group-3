@@ -14,12 +14,16 @@ function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!errorMessage) {
-      setFormState({ [e.target.name]: e.target.value });
+    //   setFormState({ ...formState, [e.target.name]: e.target.value });
       console.log("Form", formState);
     }
   };
 
   const handleChange = (e) => {
+
+    const { name, value } = e.target;
+    setFormState ({ ...formState, [name]:value })
+
     if (e.target.name === "email") {
       const isValid = validateEmail(e.target.value);
       if (!isValid) {
@@ -45,8 +49,8 @@ function ContactForm() {
           <input
             type="text"
             name="name"
-            defaultValue={name}
-            onBlur={handleChange}
+            value={formState.name}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -54,8 +58,8 @@ function ContactForm() {
           <input
             type="email"
             name="email"
-            defaultValue={email}
-            onBlur={handleChange}
+            value={formState.email}
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -63,8 +67,8 @@ function ContactForm() {
           <textarea
             name="message"
             rows="5"
-            defaultValue={message}
-            onBlur={handleChange}
+            value={formState.message}
+            onChange={handleChange}
           />
         </div>
         {errorMessage && (
