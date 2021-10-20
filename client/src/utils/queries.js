@@ -15,20 +15,15 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      
+
       appointments {
         _id
         day
-        month
         time
         services
         size
-        cost
         createdAt
-        
-        }
       }
-      
     }
   }
 `;
@@ -38,6 +33,19 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
+    }
+  }
+`;
+export const QUERY_APPOINTMENTS = gql`
+  {
+    appointment {
+      _id: ID
+      day: String
+      time: String
+      username: String
+      createdAt: String
+      services: String
+      size: String
     }
   }
 `;
