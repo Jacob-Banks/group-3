@@ -48,18 +48,30 @@ const ServicesList = ({ options }) => {
         <h3>Small dogs 20lb</h3>
         <ul>
         {dog20lb.map((choice, i) => (
-            <li key={choice.service}>{choice.service}</li>
+             <div>
+             <li key={choice.option}>{choice.option}</li>
+             <li key={choice.service}>{choice.service}</li>
+             <li key={choice.price}>{choice.price}</li>
+             </div>
         ))};
         <h3>Meduim Dogs 20lb to 60lb</h3>
         {dog20To60lb.map((choice, i) =>(
-            <li key={choice.service}>{choice.service}</li>
+           <div>
+           <li key={choice.option}>{choice.option}</li>
+           <li key={choice.service}>{choice.service}</li>
+           <li key={choice.price}>{choice.price}</li>
+           </div>
         ))};
         <h3>Big Dogs 60lb and plus</h3>
         {dog60andPlus.map((choice, i) =>(
+            <div>
+            <li key={choice.option}>{choice.option}</li>
             <li key={choice.service}>{choice.service}</li>
+            <li key={choice.price}>{choice.price}</li>
+            </div>
         ))};
          </ul>
-        <li>Lo</li>
+        
     </div>
  )
 };
