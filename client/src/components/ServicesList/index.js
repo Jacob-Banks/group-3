@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ServicesList = ({ option }) => {
+const ServicesList = ({ options }) => {
 
   const [dog20lbOrless] = useState([
     {
@@ -40,14 +40,17 @@ const ServicesList = ({ option }) => {
       price: "70$",
     },
   ]);
+  const dog20lb = dog20lbOrless.filter((opt) => opt.options === options);
 
-  const dog20lb = dog20lbOrless.filter((pack) => pack.option === option);
 
  return(
     <div>
-        <div>
-            {dog20lb.map()=>()}
-        </div>
+        {dog20lb.map((e, i) => (
+            <li key={e.service}>{e.service}</li>
+        ))}
+         
+        <li>Lo</li>
     </div>
  )
 };
+export default ServicesList;
