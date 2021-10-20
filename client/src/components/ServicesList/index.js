@@ -41,14 +41,24 @@ const ServicesList = ({ options }) => {
     },
   ]);
   const dog20lb = dog20lbOrless.filter((opt) => opt.options === options);
-
-
+  const dog20To60lb = dogBetween20and60lb.filter((opt) => opt.options === options);
+  const dog60andPlus = dog60lbOrPlus.filter((opt) => opt.options === options);
  return(
     <div>
-        {dog20lb.map((e, i) => (
-            <li key={e.service}>{e.service}</li>
-        ))}
-         
+        <h3>Small dogs 20lb</h3>
+        <ul>
+        {dog20lb.map((choice, i) => (
+            <li key={choice.service}>{choice.service}</li>
+        ))};
+        <h3>Meduim Dogs 20lb to 60lb</h3>
+        {dog20To60lb.map((choice, i) =>(
+            <li key={choice.service}>{choice.service}</li>
+        ))};
+        <h3>Big Dogs 60lb and plus</h3>
+        {dog60andPlus.map((choice, i) =>(
+            <li key={choice.service}>{choice.service}</li>
+        ))};
+         </ul>
         <li>Lo</li>
     </div>
  )
