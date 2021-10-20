@@ -22,3 +22,16 @@ export const ADD_USER = gql`
     }
   }
 `;
+export const ADD_APPOINTMENT = gql`
+  mutation addAppointment(day:$day!,month:$month!,time:$time!,services:$services,cost:$cost){
+    _id
+    username
+    day
+    month
+    time
+    services
+    cost
+    createdAt
+    
+  }
+`;
