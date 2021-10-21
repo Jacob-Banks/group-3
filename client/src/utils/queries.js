@@ -9,6 +9,13 @@ export const QUERY_USER = gql`
     }
   }
 `;
+export const QUERY_APPOINTMENTS_DAY = gql`
+  query appointments($day: String!) {
+    appointments(day: $day) {
+      time
+    }
+  }
+`;
 export const QUERY_ME = gql`
   {
     me {

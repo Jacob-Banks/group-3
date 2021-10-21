@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../utils/mutations";
-//import { QUERY_APPOINTMENTS } from "../utils/queries";
+import { QUERY_APPOINTMENTS_DAY } from "../utils/queries";
 
 const Appointment = () => {
   const [allValues, setAllValues] = useState({
@@ -11,16 +11,10 @@ const Appointment = () => {
     services: "",
   });
 
-  const changeHandler = (e) => {
-    setAllValues((prevValues) => {
-      return { ...prevValues, [e.target.name]: e.target.value };
-    });
-    console.log(allValues);
-  };
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(allValues);
+
     try {
       // add thought to database
       const day = allValues.day;
@@ -38,21 +32,42 @@ const Appointment = () => {
     }
   };
   const [addAppointment] = useMutation(ADD_APPOINTMENT);
-  //, {
-  //   update(cache, { data: { addAppointment } }) {
-  //     try {
-  //       // could potentially not exist yet, so wrap in a try...catch
-  //       const { appointments } = cache.readQuery({ query: QUERY_APPOINTMENTS });
-  //       cache.writeQuery({
-  //         query: QUERY_APPOINTMENTS,
-  //         data: { appointments: [addAppointment, ...appointments] },
-  //       });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-  //   },
-  // });
+  const { loading, data } = useQuery(QUERY_APPOINTMENTS_DAY, {
+    variables: { day: "2021-10-22" },
+  });
+  const time = data?.appointments || {};
+  const avail = [
+    { value: null, name: "select time" },
+    { value: "9", name: "9am" },
+    { value: "10", name: "10am" },
+    { value: "11", name: "11am" },
+    { value: "12", name: "12pm" },
+    { value: "1", name: "1pm" },
+    { value: "2", name: "2pm" },
+    { value: "3", name: "3pm" },
+    { value: "4", name: "4pm" },
+    { value: "5", name: "5pm" },
+    { value: "6", name: "6pm" },
+  ];
+  for (let i = 0; i < time.length; i++) {
+    let match = avail
+      .map(function (e) {
+        return e.value;
+      })
+      .indexOf(time[i].time);
+    console.log(match);
+    avail.splice(match, 1);
+  }
 
+  const changeHandler = (e) => {
+    setAllValues((prevValues) => {
+      return { ...prevValues, [e.target.name]: e.target.value };
+    });
+    console.log(allValues);
+  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <main>
       <h1>book apointment page</h1>
@@ -65,17 +80,15 @@ const Appointment = () => {
           onChange={changeHandler}
         />
         <select className="" id="time" name="time" onChange={changeHandler}>
-          <option value="9">9am</option>
-          <option value="10">10am</option>
-          <option value="11">11am</option>
-          <option value="12">12pm</option>
-          <option value="13">1pm</option>
-          <option value="14">2pm</option>
-          <option value="15">3pm</option>
-          <option value="16">4pm</option>
-          <option value="17">5pm</option>
-          <option value="18">6pm</option>
+          {avail.map((e, key) => {
+            return (
+              <option key={key} value={e.value}>
+                {e.name}
+              </option>
+            );
+          })}
         </select>
+
         <select className="" id="size" name="size" onChange={changeHandler}>
           <option value="small">Small: Under 20lbs</option>
           <option value="medium">Medium: Between 20 and 40lbs</option>

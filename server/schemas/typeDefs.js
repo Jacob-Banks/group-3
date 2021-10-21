@@ -14,8 +14,9 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     appointment(_id: ID!): Appointment
-    appointments(username: String): [Appointment]
+    appointments(day: String): [Appointment]
   }
+
   type Appointment {
     _id: ID
     day: String
