@@ -4,7 +4,7 @@ import { ADD_APPOINTMENT } from "../utils/mutations";
 import { QUERY_APPOINTMENTS_DAY } from "../utils/queries";
 
 const Appointment = () => {
-  let hideTimes = { display: "none" };
+  let hideTimes = { display: "block" };
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth() + 1; //January is 0!
@@ -88,7 +88,7 @@ const Appointment = () => {
           return e.value;
         })
         .indexOf(time[i].time);
-      console.log(match);
+      // console.log(match);
       if (match !== -1) {
         avail.splice(match, 1);
       }
