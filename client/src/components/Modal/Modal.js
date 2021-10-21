@@ -121,7 +121,6 @@ export const Modal = ({ showModal, setShowModal }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(allValues);
 
     try {
       // add  to database
@@ -140,6 +139,7 @@ export const Modal = ({ showModal, setShowModal }) => {
         services: "",
       });
       setDay("");
+      setShowModal((prev) => !prev);
     } catch (e) {
       console.error(e);
     }
