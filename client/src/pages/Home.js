@@ -11,8 +11,9 @@ const Home = () => {
   };
   return (
     <>
-      <h1>Landing page </h1>
       <Modal showModal={showModal} setShowModal={setShowModal} />
+      <h1>Landing page </h1>
+
       <p>
         blah dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
         dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah

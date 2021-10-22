@@ -28,8 +28,15 @@ export const ADD_APPOINTMENT = gql`
     $time: String!
     $services: String
     $size: String
+    $groomer: String
   ) {
-    addAppointment(day: $day, time: $time, services: $services, size: $size) {
+    addAppointment(
+      day: $day
+      time: $time
+      services: $services
+      size: $size
+      groomer: $groomer
+    ) {
       _id
       username
       day
@@ -37,6 +44,7 @@ export const ADD_APPOINTMENT = gql`
       services
       createdAt
       size
+      groomer
     }
   }
 `;

@@ -20,11 +20,13 @@ const Appointment = () => {
 
   today = yyyy + "-" + mm + "-" + dd;
   const [allValues, setAllValues] = useState({
+    groomer: "",
     size: "",
     time: "",
     services: "",
   });
   const [day, setDay] = useState("");
+  const [groomer, setGroomer] = useState("");
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -32,16 +34,17 @@ const Appointment = () => {
 
     try {
       // add  to database
-
+      const groomer = allValues.groomer;
       const size = allValues.size;
       const time = allValues.time;
       const services = allValues.services;
       await addAppointment({
-        variables: { day, size, time, services },
+        variables: { day, size, time, services, groomer },
       });
 
       // clear form value
       setAllValues({
+        groomer: "",
         size: "",
         time: "",
         services: "",
@@ -58,41 +61,90 @@ const Appointment = () => {
   });
   const time = data?.appointments || {};
 
-  const avail = [
-    { value: null, name: "select time" },
-    { value: "9", name: "9am" },
-    { value: "10", name: "10am" },
-    { value: "11", name: "11am" },
-    { value: "12", name: "12pm" },
-    { value: "1", name: "1pm" },
-    { value: "2", name: "2pm" },
-    { value: "3", name: "3pm" },
-    { value: "4", name: "4pm" },
-    { value: "5", name: "5pm" },
-    { value: "6", name: "6pm" },
-  ];
+  let avail = [];
 
   const changeHandler = (e) => {
     setAllValues({ ...allValues, [e.target.name]: e.target.value });
   };
 
+  const aGroomer = (event) => {
+    setGroomer(event.target.value);
+    //refetch({ day: day });
+  };
   const aDayChange = (event) => {
     setDay(event.target.value);
     //refetch({ day: day });
   };
+  if (groomer === "ally") {
+    avail = [
+      { value: "9", name: "9am: with Ally", groomer: "ally" },
+      { value: "10", name: "10am: with Ally", groomer: "ally" },
+      { value: "11", name: "11am: with Ally", groomer: "ally" },
+      { value: "12", name: "12pm: with Ally", groomer: "ally" },
+      { value: "1", name: "1pm: with Ally", groomer: "ally" },
+      { value: "2", name: "2pm: with Ally", groomer: "ally" },
+      { value: "3", name: "3pm: with Ally", groomer: "ally" },
+      { value: "4", name: "4pm: with Ally", groomer: "ally" },
+      { value: "5", name: "5pm: with Ally", groomer: "ally" },
+      { value: "6", name: "6pm: with Ally", groomer: "ally" },
+    ];
+  }
+  if (groomer === "bob") {
+    avail = [
+      { value: "9", name: "9am: with bob", groomer: "bob" },
+      { value: "10", name: "10am: with bob", groomer: "bob" },
+      { value: "11", name: "11am: with bob", groomer: "bob" },
+      { value: "12", name: "12pm: with bob", groomer: "bob" },
+      { value: "1", name: "1pm: with bob", groomer: "bob" },
+      { value: "2", name: "2pm: with bob", groomer: "bob" },
+      { value: "3", name: "3pm: with bob", groomer: "bob" },
+      { value: "4", name: "4pm: with bob", groomer: "bob" },
+      { value: "5", name: "5pm: with bob", groomer: "bob" },
+      { value: "6", name: "6pm: with bob", groomer: "bob" },
+    ];
+  }
+  if (groomer === "any" || groomer === "") {
+    avail = [
+      { value: null, name: "select time" },
+      { value: "9", name: "9am: with Bob", groomer: "bob" },
+      { value: "10", name: "10am: with Bob", groomer: "bob" },
+      { value: "11", name: "11am: with Bob", groomer: "bob" },
+      { value: "12", name: "12pm: with Bob", groomer: "bob" },
+      { value: "1", name: "1pm: with Bob", groomer: "bob" },
+      { value: "2", name: "2pm: with Bob", groomer: "bob" },
+      { value: "3", name: "3pm: with Bob", groomer: "bob" },
+      { value: "4", name: "4pm: with Bob", groomer: "bob" },
+      { value: "5", name: "5pm: with Bob", groomer: "bob" },
+      { value: "6", name: "6pm: with Bob", groomer: "bob" },
+      { value: "9", name: "9am: with Ally", groomer: "ally" },
+      { value: "10", name: "10am: with Ally", groomer: "ally" },
+      { value: "11", name: "11am: with Ally", groomer: "ally" },
+      { value: "12", name: "12pm: with Ally", groomer: "ally" },
+      { value: "1", name: "1pm: with Ally", groomer: "ally" },
+      { value: "2", name: "2pm: with Ally", groomer: "ally" },
+      { value: "3", name: "3pm: with Ally", groomer: "ally" },
+      { value: "4", name: "4pm: with Ally", groomer: "ally" },
+      { value: "5", name: "5pm: with Ally", groomer: "ally" },
+      { value: "6", name: "6pm: with Ally", groomer: "ally" },
+    ];
+  }
   if (day !== "") {
     // console.log(time.length);
     for (let i = 0; i < time.length; i++) {
-      let match = avail
-        .map(function (e) {
-          return e.value;
-        })
-        .indexOf(time[i].time);
-      // console.log(match);
-      if (match !== -1) {
-        avail.splice(match, 1);
+      let match = avail.map(function (e) {
+        return [e.value, e.groomer];
+      });
+      if (time.length > 0) {
+        for (let z = 0; z < match.length; z++) {
+          // This if statement depends on the format of your array
+          if (match[z][0] === time[i].time && match[z][1] === time[i].groomer) {
+            console.log(avail[z]);
+            avail.splice(z, 1);
+          }
+        }
       }
     }
+
     hideTimes = { display: "block" };
   }
 
@@ -112,6 +164,12 @@ const Appointment = () => {
           value={day}
           onChange={aDayChange}
         />
+        <select className="" id="groomer" name="groomer" onChange={aGroomer}>
+          <option value="null"> select groomer </option>
+          <option value="ally">Ally</option>
+          <option value="bob">bob</option>
+          <option value="any">Any</option>
+        </select>
 
         <select className="" id="size" name="size" onChange={changeHandler}>
           <option value="null"> select size </option>

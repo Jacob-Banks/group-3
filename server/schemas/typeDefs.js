@@ -25,6 +25,7 @@ const typeDefs = gql`
     createdAt: String
     services: String
     size: String
+    groomer: String
   }
   type Mutation {
     login(email: String!, password: String!): Auth
@@ -34,6 +35,7 @@ const typeDefs = gql`
       time: String!
       services: String
       size: String
+      groomer: String
     ): Appointment
   }
   type Auth {

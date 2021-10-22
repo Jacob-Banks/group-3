@@ -13,6 +13,7 @@ export const QUERY_APPOINTMENTS_DAY = gql`
   query appointments($day: String!) {
     appointments(day: $day) {
       time
+      groomer
     }
   }
 `;
@@ -30,6 +31,7 @@ export const QUERY_ME = gql`
         services
         size
         createdAt
+        groomer
       }
     }
   }
@@ -53,6 +55,7 @@ export const QUERY_APPOINTMENTS = gql`
       createdAt: String
       services: String
       size: String
+      groomer: String
     }
   }
 `;
