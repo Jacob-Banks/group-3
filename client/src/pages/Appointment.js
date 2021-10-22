@@ -19,8 +19,8 @@ const Appointment = () => {
   }
 
   today = yyyy + "-" + mm + "-" + dd;
+
   const [allValues, setAllValues] = useState({
-    groomer: "",
     size: "",
     time: "",
     services: "",
@@ -34,22 +34,13 @@ const Appointment = () => {
 
     try {
       // add  to database
-      const groomer = allValues.groomer;
+
       const size = allValues.size;
       const time = allValues.time;
       const services = allValues.services;
       await addAppointment({
         variables: { day, size, time, services, groomer },
       });
-
-      // clear form value
-      setAllValues({
-        groomer: "",
-        size: "",
-        time: "",
-        services: "",
-      });
-      setDay("");
     } catch (e) {
       console.error(e);
     }

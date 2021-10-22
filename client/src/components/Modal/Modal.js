@@ -137,6 +137,7 @@ export const Modal = ({ showModal, setShowModal }) => {
     } catch (e) {
       console.error(e);
     }
+    setShowModal((prev) => !prev);
   };
 
   const [addAppointment] = useMutation(ADD_APPOINTMENT);
@@ -213,16 +214,16 @@ export const Modal = ({ showModal, setShowModal }) => {
     ];
   }
   if (day !== "") {
-    // console.log(time.length);
+    //if a date has been selected, remove all that dates bookings  from the possible booking array.
+    // time is the object of all bookings on selected day ie time[0].time would be the time of the first booking time.groomer would be the groomer
+    // avail is the array of possible bookings times with each groomer
     for (let i = 0; i < time.length; i++) {
       let match = avail.map(function (e) {
         return [e.value, e.groomer];
       });
       if (time.length > 0) {
         for (let z = 0; z < match.length; z++) {
-          // This if statement depends on the format of your array
           if (match[z][0] === time[i].time && match[z][1] === time[i].groomer) {
-            console.log(avail[z]);
             avail.splice(z, 1);
           }
         }
