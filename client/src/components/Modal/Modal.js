@@ -5,7 +5,14 @@ import { MdClose } from "react-icons/md";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_APPOINTMENT } from "../../utils/mutations";
 import { QUERY_APPOINTMENTS_DAY } from "../../utils/queries";
-
+import { useStoreContext } from "../../utils/GlobalState";
+import {
+  UPDATE_DAY,
+  UPDATE_GROOMER,
+  UPDATE_SERVICES,
+  UPDATE_SIZE,
+  UPDATE_TIME,
+} from "../../utils/actions";
 const Background = styled.div`
   width: 100%;
   height: 90%;
@@ -113,24 +120,16 @@ export const Modal = ({ showModal, setShowModal }) => {
   }
 
   today = yyyy + "-" + mm + "-" + dd;
-  const [allValues, setAllValues] = useState({
-    size: "",
-    time: "",
-    services: "",
-  });
-  const [day, setDay] = useState("");
-  const [groomer, setGroomer] = useState("");
+  const [state, dispatch] = useStoreContext();
+
+  const { day, size, time, services, groomer } = state;
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(allValues);
 
     try {
       // add  to database
 
-      const size = allValues.size;
-      const time = allValues.time;
-      const services = allValues.services;
       await addAppointment({
         variables: { day, size, time, services, groomer },
       });
@@ -144,24 +143,29 @@ export const Modal = ({ showModal, setShowModal }) => {
   const { loading, data } = useQuery(QUERY_APPOINTMENTS_DAY, {
     variables: { day: day },
   });
-  const time = data?.appointments || {};
+  const avilAppt = data?.appointments || {};
 
   let avail = [];
 
-  const changeHandler = (e) => {
-    setAllValues({ ...allValues, [e.target.name]: e.target.value });
+  const changeDayHandler = (e) => {
+    dispatch({ type: UPDATE_DAY, day: e.target.value });
+  };
+  const changeTimeHandler = (e) => {
+    dispatch({ type: UPDATE_TIME, time: e.target.value });
+  };
+  const changeSizeHandler = (e) => {
+    dispatch({ type: UPDATE_SIZE, size: e.target.value });
+  };
+  const changeServicesHandler = (e) => {
+    dispatch({ type: UPDATE_SERVICES, services: e.target.value });
+  };
+  const changeGroomerHandler = (e) => {
+    dispatch({ type: UPDATE_GROOMER, groomer: e.target.value });
   };
 
-  const aGroomer = (event) => {
-    setGroomer(event.target.value);
-    //refetch({ day: day });
-  };
-  const aDayChange = (event) => {
-    setDay(event.target.value);
-    //refetch({ day: day });
-  };
   if (groomer === "ally") {
     avail = [
+      { value: "", name: "book with Ally!", groomer: "ally" },
       { value: "9", name: "9am: with Ally", groomer: "ally" },
       { value: "10", name: "10am: with Ally", groomer: "ally" },
       { value: "11", name: "11am: with Ally", groomer: "ally" },
@@ -176,6 +180,7 @@ export const Modal = ({ showModal, setShowModal }) => {
   }
   if (groomer === "bob") {
     avail = [
+      { value: "", name: "book with bob!", groomer: "bob" },
       { value: "9", name: "9am: with bob", groomer: "bob" },
       { value: "10", name: "10am: with bob", groomer: "bob" },
       { value: "11", name: "11am: with bob", groomer: "bob" },
@@ -191,16 +196,6 @@ export const Modal = ({ showModal, setShowModal }) => {
   if (groomer === "any" || groomer === "") {
     avail = [
       { value: null, name: "select time" },
-      { value: "9", name: "9am: with Bob", groomer: "bob" },
-      { value: "10", name: "10am: with Bob", groomer: "bob" },
-      { value: "11", name: "11am: with Bob", groomer: "bob" },
-      { value: "12", name: "12pm: with Bob", groomer: "bob" },
-      { value: "1", name: "1pm: with Bob", groomer: "bob" },
-      { value: "2", name: "2pm: with Bob", groomer: "bob" },
-      { value: "3", name: "3pm: with Bob", groomer: "bob" },
-      { value: "4", name: "4pm: with Bob", groomer: "bob" },
-      { value: "5", name: "5pm: with Bob", groomer: "bob" },
-      { value: "6", name: "6pm: with Bob", groomer: "bob" },
       { value: "9", name: "9am: with Ally", groomer: "ally" },
       { value: "10", name: "10am: with Ally", groomer: "ally" },
       { value: "11", name: "11am: with Ally", groomer: "ally" },
@@ -211,19 +206,32 @@ export const Modal = ({ showModal, setShowModal }) => {
       { value: "4", name: "4pm: with Ally", groomer: "ally" },
       { value: "5", name: "5pm: with Ally", groomer: "ally" },
       { value: "6", name: "6pm: with Ally", groomer: "ally" },
+      { value: "9", name: "9am: with Bob", groomer: "bob" },
+      { value: "10", name: "10am: with Bob", groomer: "bob" },
+      { value: "11", name: "11am: with Bob", groomer: "bob" },
+      { value: "12", name: "12pm: with Bob", groomer: "bob" },
+      { value: "1", name: "1pm: with Bob", groomer: "bob" },
+      { value: "2", name: "2pm: with Bob", groomer: "bob" },
+      { value: "3", name: "3pm: with Bob", groomer: "bob" },
+      { value: "4", name: "4pm: with Bob", groomer: "bob" },
+      { value: "5", name: "5pm: with Bob", groomer: "bob" },
+      { value: "6", name: "6pm: with Bob", groomer: "bob" },
     ];
   }
   if (day !== "") {
     //if a date has been selected, remove all that dates bookings  from the possible booking array.
     // time is the object of all bookings on selected day ie time[0].time would be the time of the first booking time.groomer would be the groomer
     // avail is the array of possible bookings times with each groomer
-    for (let i = 0; i < time.length; i++) {
+    for (let i = 0; i < avilAppt.length; i++) {
       let match = avail.map(function (e) {
         return [e.value, e.groomer];
       });
-      if (time.length > 0) {
+      if (avilAppt.length > 0) {
         for (let z = 0; z < match.length; z++) {
-          if (match[z][0] === time[i].time && match[z][1] === time[i].groomer) {
+          if (
+            match[z][0] === avilAppt[i].time &&
+            match[z][1] === avilAppt[i].groomer
+          ) {
             avail.splice(z, 1);
           }
         }
@@ -251,13 +259,13 @@ export const Modal = ({ showModal, setShowModal }) => {
                     name="day"
                     min={today}
                     value={day}
-                    onChange={aDayChange}
+                    onChange={changeDayHandler}
                   />
                   <select
                     className=""
                     id="groomer"
                     name="groomer"
-                    onChange={aGroomer}
+                    onChange={changeGroomerHandler}
                   >
                     <option value="null"> select groomer </option>
                     <option value="ally">Ally</option>
@@ -269,7 +277,7 @@ export const Modal = ({ showModal, setShowModal }) => {
                     className=""
                     id="size"
                     name="size"
-                    onChange={changeHandler}
+                    onChange={changeSizeHandler}
                   >
                     <option value="null"> select size </option>
                     <option value="small">Small: Under 20lbs</option>
@@ -280,7 +288,7 @@ export const Modal = ({ showModal, setShowModal }) => {
                     className=""
                     id="services"
                     name="services"
-                    onChange={changeHandler}
+                    onChange={changeServicesHandler}
                   >
                     <option value="null"> select service </option>
                     <option value="Cut and Wash">Cut and Wash</option>
@@ -299,7 +307,7 @@ export const Modal = ({ showModal, setShowModal }) => {
                     className=""
                     id="time"
                     name="time"
-                    onChange={changeHandler}
+                    onChange={changeTimeHandler}
                   >
                     {avail.map((e, key) => {
                       return (
