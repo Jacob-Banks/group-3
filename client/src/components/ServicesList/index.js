@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const ServicesList = ({ options }) => {
-
   const [dog20lbOrless] = useState([
     {
       option: "Basic Package",
@@ -41,38 +40,40 @@ const ServicesList = ({ options }) => {
     },
   ]);
   const dog20lb = dog20lbOrless.filter((opt) => opt.options === options);
-  const dog20To60lb = dogBetween20and60lb.filter((opt) => opt.options === options);
+  const dog20To60lb = dogBetween20and60lb.filter(
+    (opt) => opt.options === options
+  );
   const dog60andPlus = dog60lbOrPlus.filter((opt) => opt.options === options);
- return(
+  return (
     <div>
-        <h3>Small dogs 20lb</h3>
-        <ul>
+      <ul>
+        <h2>Small dogs 20lb</h2>
         {dog20lb.map((choice, i) => (
-             <div>
-             <li key={choice.option}>{choice.option}</li>
-             <li key={choice.service}>{choice.service}</li>
-             <li key={choice.price}>{choice.price}</li>
-             </div>
-        ))};
-        <h3>Meduim Dogs 20lb to 60lb</h3>
-        {dog20To60lb.map((choice, i) =>(
-           <div>
-           <li key={choice.option}>{choice.option}</li>
-           <li key={choice.service}>{choice.service}</li>
-           <li key={choice.price}>{choice.price}</li>
-           </div>
-        ))};
-        <h3>Big Dogs 60lb and plus</h3>
-        {dog60andPlus.map((choice, i) =>(
-            <div>
-            <li key={choice.option}>{choice.option}</li>
+          <div>
+            <h5 key={choice.option}>{choice.option}</h5>
             <li key={choice.service}>{choice.service}</li>
             <li key={choice.price}>{choice.price}</li>
-            </div>
-        ))};
-         </ul>
-        
+          </div>
+        ))}
+
+        <h2>Meduim Dogs 20lb to 60lb</h2>
+        {dog20To60lb.map((choice, i) => (
+          <div>
+            <h5 key={choice.option}>{choice.option}</h5>
+            <li key={choice.service}>{choice.service}</li>
+            <li key={choice.price}>{choice.price}</li>
+          </div>
+        ))}
+        <h2>Big Dogs 60lb and plus</h2>
+        {dog60andPlus.map((choice, i) => (
+          <div>
+            <h5 key={choice.option}>{choice.option}</h5>
+            <li key={choice.service}>{choice.service}</li>
+            <li key={choice.price}>{choice.price}</li>
+          </div>
+        ))}
+      </ul>
     </div>
- )
+  );
 };
 export default ServicesList;

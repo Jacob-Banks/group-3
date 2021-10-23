@@ -4,8 +4,8 @@ import ServicesList from "../components/ServicesList";
 const Services = () => {
   return (
     <div>
+      <h1>Our services</h1>
       <ServicesList></ServicesList>
-      <p>Our services</p>
     </div>
   );
 };
