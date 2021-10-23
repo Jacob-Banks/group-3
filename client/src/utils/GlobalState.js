@@ -8,9 +8,9 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useProductReducer({
     day: "",
     time: "",
-    groomer: "",
-    services: "",
-    size: "",
+    groomer: "Select a Groomer",
+    services: "Select your Service",
+    size: "Select your size",
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

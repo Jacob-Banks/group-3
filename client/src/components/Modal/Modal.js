@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 import { MdClose } from "react-icons/md";
@@ -262,12 +262,13 @@ export const Modal = ({ showModal, setShowModal }) => {
                     onChange={changeDayHandler}
                   />
                   <select
+                    value={groomer}
                     className=""
                     id="groomer"
                     name="groomer"
                     onChange={changeGroomerHandler}
                   >
-                    <option value="null"> select groomer </option>
+                    <option value={groomer}> {groomer} </option>
                     <option value="ally">Ally</option>
                     <option value="bob">bob</option>
                     <option value="any">Any</option>
@@ -279,7 +280,7 @@ export const Modal = ({ showModal, setShowModal }) => {
                     name="size"
                     onChange={changeSizeHandler}
                   >
-                    <option value="null"> select size </option>
+                    <option value={size}> {size} </option>
                     <option value="small">Small: Under 20lbs</option>
                     <option value="medium">Medium: Between 20 and 40lbs</option>
                     <option value="large">Large: Over 40lbs</option>
@@ -288,9 +289,10 @@ export const Modal = ({ showModal, setShowModal }) => {
                     className=""
                     id="services"
                     name="services"
+                    value={services}
                     onChange={changeServicesHandler}
                   >
-                    <option value="null"> select service </option>
+                    <option value={services}> {services} </option>
                     <option value="Cut and Wash">Cut and Wash</option>
                     <option value="Cut, Brush Teeth, Nail cut, Ear Cleaning, Squeeze Butt Gland">
                       Cut, Brush Teeth, Nail cut, Ear Cleaning, Squeeze Butt
