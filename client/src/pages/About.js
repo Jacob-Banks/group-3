@@ -1,11 +1,16 @@
 import React from "react";
-//import { useParams } from "react-router-dom";
+import  MeetTheGroomers  from '../components/Groomers'
 
 const About = () => {
   return (
     <div>
-      <p>meet us</p>
+      <h1>Meet us</h1>
+      <div>
+      <MeetTheGroomers></MeetTheGroomers>
+      </div>
     </div>
+    
+    
   );
 };
 
