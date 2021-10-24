@@ -23,3 +23,13 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+
+export const CONTACT_SUBMIT = gql`
+  mutation contactSubmit($name: String!, $email: String!, $message: String!) {
+    contactSubmit(name: $name, email: $email, message: $message) {
+      name
+      email
+      message
+    }
+  }`
