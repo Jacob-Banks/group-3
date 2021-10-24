@@ -138,6 +138,7 @@ nav a:hover {
   border-radius: var(--border-radius);
   background-color: var(--light);
   color: var(--dark);
+  overflow-y: scroll;
 }
 
 .card-header {

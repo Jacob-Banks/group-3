@@ -15,50 +15,25 @@ import {
 } from "../../utils/actions";
 const Background = styled.div`
   width: 100%;
-  height: 90%;
-  max-width: 1200px;
+  height: 100%;
+  max-width: 100vw;
   background: rgba(0, 0, 0, 0.3);
   position: fixed;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const ModalWrapper = styled.div`
+  max-height: calc(100vh - 100px);
+
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
-  display: grid;
-  grid-template-columns: 1fr;
   position: relative;
   z-index: 10;
   border-radius: 10px;
 `;
-
-// const ModalImg = styled.img`
-//   width: 100%;
-//   height: 100%;
-//   border-radius: 10px 0 0 10px;
-//   background: #000;
-// `;
-
-// const ModalContent = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   line-height: 1.8;
-//   color: #141414;
-//   p {
-//     margin-bottom: 1rem;
-//   }
-//   button {
-//     padding: 10px 24px;
-//     background: #141414;
-//     color: #fff;
-//     border: none;
-//   }
-// `;
 
 const CloseModalButton = styled(MdClose)`
   cursor: pointer;
@@ -183,7 +158,12 @@ export const Modal = ({ showModal, setShowModal }) => {
     dispatch({ type: UPDATE_GROOMER, groomer: e.target.value });
   };
 
-  let possibleGroomer = ["ally", "bob", "cat", "dog"];
+  let possibleGroomer = [
+    "Jason Terry",
+    "Elizabeth Santon",
+    "Viviane Curry",
+    "Marie France",
+  ];
   let avail = [
     { value: null, name: `Book with ${groomer}` },
     { value: "9", name: "9am" },
@@ -222,7 +202,7 @@ export const Modal = ({ showModal, setShowModal }) => {
     let p5 = 0;
     let p6 = 0;
     for (let i = 0; i < avilAppt.length; i++) {
-      console.log(avilAppt[i].time);
+      // console.log(avilAppt[i].time);
       switch (avilAppt[i].time) {
         case "9":
           a9++;
@@ -349,10 +329,12 @@ export const Modal = ({ showModal, setShowModal }) => {
                           onChange={changeGroomerHandler}
                         >
                           <option value="Anyone">Anyone</option>
-                          <option value="ally">Ally</option>
-                          <option value="bob">bob</option>
-                          <option value="cat">cat</option>
-                          <option value="dog">dog</option>
+                          <option value="Marie France">Marie France</option>
+                          <option value="Viviane Curry">Viviane Curry</option>
+                          <option value="Elizabeth Santon">
+                            Elizabeth Santon
+                          </option>
+                          <option value="Jason Terry">Jason Terry</option>
                         </select>
                       </label>
                       <label className="form-label">
