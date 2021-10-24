@@ -42,18 +42,18 @@ function App() {
         <div className="flex-column justify-flex-start min-100-vh">
           <StoreProvider>
             <Header />
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={Signup} />
-                <Route exact path="/profile/:username?" component={Profile} />
-                <Route exact path="/Services/" component={Services} />
-                <Route exact path="/Appointment/" component={Appointment} />
-                <Route exact path="/About/" component={About} />
-                <Route component={NoMatch} />
-              </Switch>
-            </div>
+            {/* <div className="container"> */}
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/Services/" component={Services} />
+              <Route exact path="/Appointment/" component={Appointment} />
+              <Route exact path="/About/" component={About} />
+              <Route component={NoMatch} />
+            </Switch>
+            {/* </div> */}
             <Footer />
           </StoreProvider>
         </div>

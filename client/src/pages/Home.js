@@ -20,24 +20,27 @@ const Home = () => {
 
   return (
     <>
-      <Modal showModal={showModal} setShowModal={setShowModal} />
-      <h1>Landing page </h1>
+      <div className="container-fluid ">
+        <Modal showModal={showModal} setShowModal={setShowModal} />
 
-      <p>
-        blah dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
-        dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
-        dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
-        dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf
-      </p>
-      <p>check out services! add link</p>
-      <p>meet us! add link</p>
-      <p>find us! add link</p>
+        <h1>Landing page </h1>
 
-      <p>
-        Know what you want book here!
-        <button onClick={openModal}>Book with ally!</button>
-        <button onClick={open2Modal}>Book!</button>
-      </p>
+        <p>
+          blah dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
+          dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
+          dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
+          dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf
+        </p>
+        <p>check out services! add link</p>
+        <p>meet us! add link</p>
+        <p>find us! add link</p>
+
+        <p>
+          Know what you want book here!
+          <button onClick={openModal}>Book with ally!</button>
+          <button onClick={open2Modal}>Book!</button>
+        </p>
+      </div>
     </>
   );
 };

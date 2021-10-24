@@ -25,13 +25,11 @@ const Background = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  width: 800px;
-  height: 500px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   position: relative;
   z-index: 10;
   border-radius: 10px;
@@ -44,23 +42,23 @@ const ModalWrapper = styled.div`
 //   background: #000;
 // `;
 
-const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  line-height: 1.8;
-  color: #141414;
-  p {
-    margin-bottom: 1rem;
-  }
-  button {
-    padding: 10px 24px;
-    background: #141414;
-    color: #fff;
-    border: none;
-  }
-`;
+// const ModalContent = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   line-height: 1.8;
+//   color: #141414;
+//   p {
+//     margin-bottom: 1rem;
+//   }
+//   button {
+//     padding: 10px 24px;
+//     background: #141414;
+//     color: #fff;
+//     border: none;
+//   }
+// `;
 
 const CloseModalButton = styled(MdClose)`
   cursor: pointer;
@@ -105,7 +103,7 @@ export const Modal = ({ showModal, setShowModal }) => {
     return () => document.removeEventListener("keydown", keyPress);
   }, [keyPress]);
 
-  let hideTimes = { display: "block" };
+  // let hideTimes = { display: "block" };
   var today = new Date();
   var dd = today.getDate();
   var mm = today.getMonth() + 1; //January is 0!
@@ -144,6 +142,7 @@ export const Modal = ({ showModal, setShowModal }) => {
     variables: { day: day },
   });
   const avilAppt = data?.appointments || {};
+  console.log(avilAppt.length);
 
   const changeDayHandler = (e) => {
     dispatch({ type: UPDATE_DAY, day: e.target.value });
@@ -319,83 +318,111 @@ export const Modal = ({ showModal, setShowModal }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
-              <ModalContent>
-                <form onSubmit={handleFormSubmit}>
-                  <input
-                    type="date"
-                    className=""
-                    id="day"
-                    name="day"
-                    min={today}
-                    value={day}
-                    onChange={changeDayHandler}
-                  />
-                  <select
-                    value={groomer}
-                    className=""
-                    id="groomer"
-                    name="groomer"
-                    onChange={changeGroomerHandler}
-                  >
-                    <option value={groomer}> {groomer} </option>
-                    <option value="Anyone">Anyone</option>
-                    <option value="ally">Ally</option>
-                    <option value="bob">bob</option>
-                    <option value="cat">cat</option>
-                    <option value="dog">dog</option>
-                  </select>
+              {/* //       <ModalContent> */}
+              <div className="col-12 col-md-6">
+                <div className="card">
+                  <h4 className="card-header">Book!</h4>
+                  <div className="card-body">
+                    <form onSubmit={handleFormSubmit}>
+                      <label className="form-label">
+                        {" "}
+                        Date
+                        <input
+                          type="date"
+                          className=" form-input"
+                          id="day"
+                          name="day"
+                          value={day}
+                          min={today}
+                          //   value={day}
+                          onChange={changeDayHandler}
+                        />
+                      </label>
+                      <label className="form-label">
+                        {" "}
+                        Groomer
+                        <select
+                          value={groomer}
+                          className="form-input"
+                          id="groomer"
+                          name="groomer"
+                          onChange={changeGroomerHandler}
+                        >
+                          <option value="Anyone">Anyone</option>
+                          <option value="ally">Ally</option>
+                          <option value="bob">bob</option>
+                          <option value="cat">cat</option>
+                          <option value="dog">dog</option>
+                        </select>
+                      </label>
+                      <label className="form-label">
+                        {" "}
+                        Size
+                        <select
+                          className="form-input"
+                          id="size"
+                          name="size"
+                          value={size}
+                          onChange={changeSizeHandler}
+                        >
+                          <option value="null">Slect size</option>
+                          <option value="small">Small: Under 20lbs</option>
+                          <option value="medium">
+                            Medium: Between 20 and 40lbs
+                          </option>
+                          <option value="large">Large: Over 40lbs</option>
+                        </select>
+                      </label>
+                      <label className="form-label">
+                        {" "}
+                        services
+                        <select
+                          className="form-input"
+                          id="services"
+                          name="services"
+                          value={services}
+                          onChange={changeServicesHandler}
+                        >
+                          <option value={services}>{services}</option>
+                          <option value="Cut, Brush Teeth, Nail cut, Ear Cleaning, Squeeze Butt Gland">
+                            Cut, Brush Teeth, Nail cut, Ear Cleaning, Squeeze
+                            Butt Gland
+                          </option>
+                          <option value="Cut">Cut</option>
+                          <option value="Cut and Wash">Cut and Wash</option>
+                          <option value="wash">Wash</option>
+                          <option value="nail">Nail cut</option>
+                          <option value="butt gland">Squeeze Butt Gland</option>
+                          <option value="brush Teath">Brush Teath</option>
+                        </select>
+                      </label>
+                      <label className="form-label">
+                        {" "}
+                        time{" "}
+                        <select
+                          className="form-input"
+                          id="time"
+                          name="time"
+                          onChange={changeTimeHandler}
+                        >
+                          {avail.map((e, key) => {
+                            return (
+                              <option key={key} value={e.value}>
+                                {e.name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </label>
 
-                  <select
-                    className=""
-                    id="size"
-                    name="size"
-                    onChange={changeSizeHandler}
-                  >
-                    <option value={size}> {size} </option>
-                    <option value="small">Small: Under 20lbs</option>
-                    <option value="medium">Medium: Between 20 and 40lbs</option>
-                    <option value="large">Large: Over 40lbs</option>
-                  </select>
-                  <select
-                    className=""
-                    id="services"
-                    name="services"
-                    value={services}
-                    onChange={changeServicesHandler}
-                  >
-                    <option value={services}> {services} </option>
-                    <option value="Cut and Wash">Cut and Wash</option>
-                    <option value="Cut, Brush Teeth, Nail cut, Ear Cleaning, Squeeze Butt Gland">
-                      Cut, Brush Teeth, Nail cut, Ear Cleaning, Squeeze Butt
-                      Gland
-                    </option>
-                    <option value="Cut">Cut</option>
-                    <option value="wash">Wash</option>
-                    <option value="nail">Nail cut</option>
-                    <option value="butt gland">Squeeze Butt Gland</option>
-                    <option value="brush Teath">Brush Teath</option>
-                  </select>
-                  <select
-                    style={hideTimes}
-                    className=""
-                    id="time"
-                    name="time"
-                    onChange={changeTimeHandler}
-                  >
-                    {avail.map((e, key) => {
-                      return (
-                        <option key={key} value={e.value}>
-                          {e.name}
-                        </option>
-                      );
-                    })}
-                  </select>
-
-                  <button className="btn col-12 col-md-3" type="submit">
-                    Submit
-                  </button>
-                </form>{" "}
-              </ModalContent>
+                      <button className="btn col-12 col-md-3" type="submit">
+                        Submit
+                      </button>
+                    </form>{" "}
+                  </div>
+                </div>
+              </div>
+              {/* </ModalContent> */}
               <CloseModalButton
                 aria-label="Close modal"
                 onClick={() => setShowModal((prev) => !prev)}
