@@ -145,13 +145,34 @@ export const Modal = ({ showModal, setShowModal }) => {
   });
   const avilAppt = data?.appointments || {};
 
-  let avail = [];
-
   const changeDayHandler = (e) => {
     dispatch({ type: UPDATE_DAY, day: e.target.value });
   };
   const changeTimeHandler = (e) => {
     dispatch({ type: UPDATE_TIME, time: e.target.value });
+    if (groomer === "Anyone") {
+      let groomers = [];
+      for (let i = 0; i < avilAppt.length; i++) {
+        //console.log("looking for groomer");
+        if (avilAppt[i].time === e.target.value) {
+          console.log("found one");
+          groomers.push(avilAppt[i].groomer);
+        }
+      }
+      //console.log(groomers);
+      if (groomers.indexOf(possibleGroomer[0]) === -1) {
+        dispatch({ type: UPDATE_GROOMER, groomer: possibleGroomer[0] });
+      }
+      if (groomers.indexOf(possibleGroomer[1]) === -1) {
+        dispatch({ type: UPDATE_GROOMER, groomer: possibleGroomer[1] });
+      }
+      if (groomers.indexOf(possibleGroomer[2]) === -1) {
+        dispatch({ type: UPDATE_GROOMER, groomer: possibleGroomer[2] });
+      }
+      if (groomers.indexOf(possibleGroomer[3]) === -1) {
+        dispatch({ type: UPDATE_GROOMER, groomer: possibleGroomer[3] });
+      }
+    }
   };
   const changeSizeHandler = (e) => {
     dispatch({ type: UPDATE_SIZE, size: e.target.value });
@@ -163,83 +184,131 @@ export const Modal = ({ showModal, setShowModal }) => {
     dispatch({ type: UPDATE_GROOMER, groomer: e.target.value });
   };
 
-  if (groomer === "ally") {
-    avail = [
-      { value: "", name: "book with Ally!", groomer: "ally" },
-      { value: "9", name: "9am: with Ally", groomer: "ally" },
-      { value: "10", name: "10am: with Ally", groomer: "ally" },
-      { value: "11", name: "11am: with Ally", groomer: "ally" },
-      { value: "12", name: "12pm: with Ally", groomer: "ally" },
-      { value: "1", name: "1pm: with Ally", groomer: "ally" },
-      { value: "2", name: "2pm: with Ally", groomer: "ally" },
-      { value: "3", name: "3pm: with Ally", groomer: "ally" },
-      { value: "4", name: "4pm: with Ally", groomer: "ally" },
-      { value: "5", name: "5pm: with Ally", groomer: "ally" },
-      { value: "6", name: "6pm: with Ally", groomer: "ally" },
-    ];
-  }
-  if (groomer === "bob") {
-    avail = [
-      { value: "", name: "book with bob!", groomer: "bob" },
-      { value: "9", name: "9am: with bob", groomer: "bob" },
-      { value: "10", name: "10am: with bob", groomer: "bob" },
-      { value: "11", name: "11am: with bob", groomer: "bob" },
-      { value: "12", name: "12pm: with bob", groomer: "bob" },
-      { value: "1", name: "1pm: with bob", groomer: "bob" },
-      { value: "2", name: "2pm: with bob", groomer: "bob" },
-      { value: "3", name: "3pm: with bob", groomer: "bob" },
-      { value: "4", name: "4pm: with bob", groomer: "bob" },
-      { value: "5", name: "5pm: with bob", groomer: "bob" },
-      { value: "6", name: "6pm: with bob", groomer: "bob" },
-    ];
-  }
-  if (groomer === "any" || groomer === "") {
-    avail = [
-      { value: null, name: "select time" },
-      { value: "9", name: "9am: with Ally", groomer: "ally" },
-      { value: "10", name: "10am: with Ally", groomer: "ally" },
-      { value: "11", name: "11am: with Ally", groomer: "ally" },
-      { value: "12", name: "12pm: with Ally", groomer: "ally" },
-      { value: "1", name: "1pm: with Ally", groomer: "ally" },
-      { value: "2", name: "2pm: with Ally", groomer: "ally" },
-      { value: "3", name: "3pm: with Ally", groomer: "ally" },
-      { value: "4", name: "4pm: with Ally", groomer: "ally" },
-      { value: "5", name: "5pm: with Ally", groomer: "ally" },
-      { value: "6", name: "6pm: with Ally", groomer: "ally" },
-      { value: "9", name: "9am: with Bob", groomer: "bob" },
-      { value: "10", name: "10am: with Bob", groomer: "bob" },
-      { value: "11", name: "11am: with Bob", groomer: "bob" },
-      { value: "12", name: "12pm: with Bob", groomer: "bob" },
-      { value: "1", name: "1pm: with Bob", groomer: "bob" },
-      { value: "2", name: "2pm: with Bob", groomer: "bob" },
-      { value: "3", name: "3pm: with Bob", groomer: "bob" },
-      { value: "4", name: "4pm: with Bob", groomer: "bob" },
-      { value: "5", name: "5pm: with Bob", groomer: "bob" },
-      { value: "6", name: "6pm: with Bob", groomer: "bob" },
-    ];
-  }
-  if (day !== "") {
-    //if a date has been selected, remove all that dates bookings  from the possible booking array.
-    // time is the object of all bookings on selected day ie time[0].time would be the time of the first booking time.groomer would be the groomer
-    // avail is the array of possible bookings times with each groomer
+  let possibleGroomer = ["ally", "bob", "cat", "dog"];
+  let avail = [
+    { value: null, name: `Book with ${groomer}` },
+    { value: "9", name: "9am" },
+    { value: "10", name: "10am" },
+    { value: "11", name: "11am" },
+    { value: "12", name: "12pm" },
+    { value: "1", name: "1pm" },
+    { value: "2", name: "2pm" },
+    { value: "3", name: "3pm" },
+    { value: "4", name: "4pm" },
+    { value: "5", name: "5pm" },
+    { value: "6", name: "6pm" },
+  ];
+
+  if (groomer !== "Anyone") {
     for (let i = 0; i < avilAppt.length; i++) {
-      let match = avail.map(function (e) {
-        return [e.value, e.groomer];
-      });
-      if (avilAppt.length > 0) {
-        for (let z = 0; z < match.length; z++) {
-          if (
-            match[z][0] === avilAppt[i].time &&
-            match[z][1] === avilAppt[i].groomer
-          ) {
-            avail.splice(z, 1);
-          }
+      for (let z = 0; z < avail.length; z++) {
+        if (
+          avail[z].value === avilAppt[i].time &&
+          groomer === avilAppt[i].groomer
+        ) {
+          avail.splice(z, 1);
         }
       }
     }
-
-    hideTimes = { display: "block" };
   }
+  if (groomer === "Anyone") {
+    let a9 = 0;
+    let a10 = 0;
+    let a11 = 0;
+    let p12 = 0;
+    let p1 = 0;
+    let p2 = 0;
+    let p3 = 0;
+    let p4 = 0;
+    let p5 = 0;
+    let p6 = 0;
+    for (let i = 0; i < avilAppt.length; i++) {
+      console.log(avilAppt[i].time);
+      switch (avilAppt[i].time) {
+        case "9":
+          a9++;
+          // console.log("found");
+          // console.log(a9);
+          if (a9 >= possibleGroomer.length) {
+            avail.splice(1, 1);
+          }
+          break;
+        case "10":
+          a10++;
+          if (a10 >= possibleGroomer.length) {
+            avail.splice(2, 1);
+          }
+          break;
+        case "11":
+          a11++;
+          if (a11 >= possibleGroomer.length) {
+            avail.splice(3, 1);
+          }
+          break;
+        case "12":
+          p12++;
+          if (p12 >= possibleGroomer.length) {
+            avail.splice(4, 1);
+          }
+          break;
+        case "1":
+          p1++;
+          if (p1 >= possibleGroomer.length) {
+            avail.splice(5, 1);
+          }
+          break;
+        case "2":
+          p2++;
+          if (p2 >= possibleGroomer.length) {
+            avail.splice(6, 1);
+          }
+          break;
+        case "3":
+          p3++;
+          if (p3 >= possibleGroomer.length) {
+            avail.splice(7, 1);
+          }
+          break;
+        case "4":
+          p4++;
+          if (p4 >= possibleGroomer.length) {
+            avail.splice(8, 1);
+          }
+          break;
+        case "5":
+          p5++;
+          if (p5 >= possibleGroomer.length) {
+            avail.splice(9, 1);
+          }
+          break;
+        case "6":
+          p6++;
+          if (p6 >= possibleGroomer.length) {
+            avail.splice(10, 1);
+          }
+          break;
+        default:
+          console.log("bad data");
+      }
+    }
+    //console.log(a9);
+  }
+  //if a date has been selected, remove all that dates bookings  from the possible booking array.
+  // time is the object of all bookings on selected day ie time[0].time would be the time of the first booking time.groomer would be the groomer
+  // avail is the array of possible bookings times with each groomer
+  //
+  //   let match = avail.map(function (e) {
+  //     return [e.value, e.groomer];
+  //   });
+  //   if (avilAppt.length > 0) {
+  //
+  //       }
+  //     }
+  //   }
+  //}
+
+  //hideTimes = { display: "block" };
+  // }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -269,9 +338,11 @@ export const Modal = ({ showModal, setShowModal }) => {
                     onChange={changeGroomerHandler}
                   >
                     <option value={groomer}> {groomer} </option>
+                    <option value="Anyone">Anyone</option>
                     <option value="ally">Ally</option>
                     <option value="bob">bob</option>
-                    <option value="any">Any</option>
+                    <option value="cat">cat</option>
+                    <option value="dog">dog</option>
                   </select>
 
                   <select
