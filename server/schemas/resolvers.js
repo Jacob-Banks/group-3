@@ -16,8 +16,8 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
-    appointments: async (parent, { username }) => {
-      const params = username ? { username } : {};
+    appointments: async (parent, { day }) => {
+      const params = day ? { day } : {};
       return Appointment.find(params).sort({ createdAt: -1 });
     },
     appointment: async (parent, { _id }) => {
@@ -75,7 +75,7 @@ const resolvers = {
         return appointment;
       }
 
-      // throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };

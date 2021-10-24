@@ -22,3 +22,29 @@ export const ADD_USER = gql`
     }
   }
 `;
+export const ADD_APPOINTMENT = gql`
+  mutation addAppointment(
+    $day: String!
+    $time: String!
+    $services: String
+    $size: String
+    $groomer: String
+  ) {
+    addAppointment(
+      day: $day
+      time: $time
+      services: $services
+      size: $size
+      groomer: $groomer
+    ) {
+      _id
+      username
+      day
+      time
+      services
+      createdAt
+      size
+      groomer
+    }
+  }
+`;
