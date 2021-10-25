@@ -20,6 +20,12 @@ const resolvers = {
       const params = day ? { day } : {};
       return Appointment.find(params).sort({ createdAt: -1 });
     },
+
+    appointments: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Appointment.find(params).sort({ createdAt: -1 });
+    },
+
     appointment: async (parent, { _id }) => {
       return Appointment.findOne({ _id });
     },
