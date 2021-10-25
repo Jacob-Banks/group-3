@@ -139,6 +139,7 @@ nav a:hover {
   background-color: var(--light);
   color: var(--dark);
   overflow-y: scroll;
+  background-image: url(./components/Modal/wash.jpg);
 }
 
 .card-header {
@@ -159,6 +160,7 @@ nav a:hover {
 .form-input,
 .form-textarea {
   display: block;
+  color: black;
 }
 
 .form-label {

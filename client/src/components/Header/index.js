@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { UPDATE_SHOWMODAL } from "../../utils/actions";
 import Auth from "../../utils/auth";
 import { useStoreContext } from "../../utils/GlobalState";
-import { Modal } from "../Modal/Modal";
+//import { Modal } from "../Modal/Modal";
 
 const Header = () => {
   const logout = (event) => {
@@ -16,7 +16,6 @@ const Header = () => {
   const { showModal } = state;
   const openModal = () => {
     dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
-    console.log("where is modal", showModal);
   };
   return (
     <header
@@ -24,10 +23,6 @@ const Header = () => {
       className="bg-secondary mb-4 py-2 flex-row align-center"
     >
       <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <Modal
-          showModal={showModal}
-          dispatch={{ type: UPDATE_SHOWMODAL, showModal: { showModal } }}
-        />
         <Link to="/">
           <h1>Ruff Cuts</h1>
         </Link>

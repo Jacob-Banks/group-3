@@ -14,6 +14,7 @@ import {
   UPDATE_SHOWMODAL,
   UPDATE_TIME,
 } from "../../utils/actions";
+
 const Background = styled.div`
   width: 100%;
   height: 100%;
@@ -22,7 +23,7 @@ const Background = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 const ModalWrapper = styled.div`
