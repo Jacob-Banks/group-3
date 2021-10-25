@@ -23,7 +23,7 @@ const ApptList = () => {
 
     return (
         <div>
-        <h3>Current bookings</h3>
+        <br />
         {appointments &&
           appointments.map(appointment => (
             <div key={appointment._id} className="card mb-3">
