@@ -106,7 +106,7 @@ export const Modal = () => {
     variables: { day: day },
   });
   const avilAppt = data?.appointments || {};
-  console.log(avilAppt);
+  // console.log(avilAppt);
 
   const changeDayHandler = (e) => {
     dispatch({ type: UPDATE_DAY, day: e.target.value });
