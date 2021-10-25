@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { Modal } from "../Modal/Modal";
 //import { GlobalStyle } from "../globalStyles";
 import { useStoreContext } from "../../utils/GlobalState";
-import { UPDATE_GROOMER } from "../../utils/actions";
+import { UPDATE_GROOMER, UPDATE_SHOWMODAL } from "../../utils/actions";
 
 const MeetTheGroomers = ({ options }) => {
-  const [showModal, setShowModal] = useState(false);
   const [state, dispatch] = useStoreContext();
-
+  const { showModal } = state;
   const [Groomers] = useState([
     {
       photo: "../../images/iStock-467571900-e1499441668456.jpeg",
@@ -36,7 +35,8 @@ const MeetTheGroomers = ({ options }) => {
     let person = Groomers[param].name;
 
     dispatch({ type: UPDATE_GROOMER, groomer: person });
-    setShowModal((prev) => !prev);
+    dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
+
     //console.log(state.groomer);
   };
 
@@ -44,7 +44,6 @@ const MeetTheGroomers = ({ options }) => {
 
   return (
     <>
-      <Modal showModal={showModal} setShowModal={setShowModal} />
       <div>
         <ul>
           <h2>Grommers</h2>

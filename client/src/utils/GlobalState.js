@@ -11,6 +11,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     groomer: "Anyone",
     services: "Cut and Wash",
     size: "large",
+    showModal: false,
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

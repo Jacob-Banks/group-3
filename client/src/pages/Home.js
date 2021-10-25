@@ -1,28 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 //import styled from "styled-components";
-import { Modal } from "../components/Modal/Modal";
+// import { Modal } from "../components/Modal/Modal";
 //import { GlobalStyle } from "../globalStyles";
 import { useStoreContext } from "../utils/GlobalState";
-import { UPDATE_GROOMER } from "../utils/actions";
+import { UPDATE_SHOWMODAL } from "../utils/actions";
 
 const Home = () => {
-  const [showModal, setShowModal] = useState(false);
   const [state, dispatch] = useStoreContext();
+  const { showModal } = state;
 
-  const openModal = () => {
-    dispatch({ type: UPDATE_GROOMER, groomer: "ally" });
-    setShowModal((prev) => !prev);
-  };
   const open2Modal = () => {
-    // dispatch({ type: UPDATE_GROOMER, groomer: "ally" });
-    setShowModal((prev) => !prev);
+    dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
   };
 
   return (
     <>
       <div className="container-fluid ">
-        <Modal showModal={showModal} setShowModal={setShowModal} />
-
         <h1>Landing page </h1>
 
         <p>
@@ -37,7 +30,6 @@ const Home = () => {
 
         <p>
           Know what you want book here!
-          <button onClick={openModal}>Book with ally!</button>
           <button onClick={open2Modal}>Book!</button>
         </p>
       </div>

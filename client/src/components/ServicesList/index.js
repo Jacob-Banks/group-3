@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "../Modal/Modal";
 //import { GlobalStyle } from "../globalStyles";
 import { useStoreContext } from "../../utils/GlobalState";
-import { UPDATE_SERVICES } from "../../utils/actions";
+import { UPDATE_SERVICES, UPDATE_SHOWMODAL } from "../../utils/actions";
 
 const ServicesList = ({ options }) => {
   const [dog20lbOrless] = useState([
@@ -43,16 +43,17 @@ const ServicesList = ({ options }) => {
       price: "70$",
     },
   ]);
-  const [showModal, setShowModal] = useState(false);
-  const [state, dispatch] = useStoreContext();
 
+  const [state, dispatch] = useStoreContext();
+  const { showModal } = state;
   const openModal = (e) => {
     const { param } = e.target.dataset;
 
     let person = dog20To60lb[param].service;
 
     dispatch({ type: UPDATE_SERVICES, services: person });
-    setShowModal((prev) => !prev);
+    dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
+
     //console.log(state.groomer);
   };
   const dog20lb = dog20lbOrless.filter((opt) => opt.options === options);
@@ -62,7 +63,6 @@ const ServicesList = ({ options }) => {
   const dog60andPlus = dog60lbOrPlus.filter((opt) => opt.options === options);
   return (
     <>
-      <Modal showModal={showModal} setShowModal={setShowModal} />
       <div>
         <ul>
           <h2>Small dogs 20lb</h2>
