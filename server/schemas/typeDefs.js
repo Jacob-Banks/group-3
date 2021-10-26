@@ -14,30 +14,30 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     appointment(_id: ID!): Appointment
-    appointments(username: String): [Appointment]
+    appointments(day: String, username:String): [Appointment]
   }
+
   type Appointment {
     _id: ID
-    day: Int
-    month: Int
-    time: Int
+    day: String
+    time: String
     username: String
     createdAt: String
     services: String
     size: String
-    cost: Int
+    groomer: String
   }
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addAppointment(
-      day: Int!
-      month: Int!
-      time: Int!
+      day: String!
+      time: String!
       services: String
       size: String
-      cost: Int
+      groomer: String
     ): Appointment
+    cancelAppointment(_id: String!): Appointment
   }
   type Auth {
     token: ID!

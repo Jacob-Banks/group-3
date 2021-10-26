@@ -4,17 +4,18 @@ const dateFormat = require("../utils/dateFormat");
 
 const appointmentSchema = new Schema({
   day: {
-    type: Number,
+    type: String,
     required: true,
   },
   time: {
-    type: Number,
+    type: String,
     required: true,
   },
-  month: {
-    type: Number,
+  groomer: {
+    type: String,
     required: true,
   },
+
   createdAt: {
     type: Date,
     default: Date.now,
@@ -24,10 +25,7 @@ const appointmentSchema = new Schema({
     type: String,
     required: true,
   },
-  cost: {
-    type: Number,
-    required: true,
-  },
+
   size: {
     type: String,
     required: true,

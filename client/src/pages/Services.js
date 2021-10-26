@@ -1,10 +1,11 @@
 import React from "react";
 //import { useParams } from "react-router-dom";
-
+import ServicesList from "../components/ServicesList";
 const Services = () => {
   return (
     <div>
-      <p>Our services</p>
+      <h1>Our services</h1>
+      <ServicesList></ServicesList>
     </div>
   );
 };

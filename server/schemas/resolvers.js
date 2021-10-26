@@ -16,10 +16,16 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
+    appointments: async (parent, { day }) => {
+      const params = day ? { day } : {};
+      return Appointment.find(params).sort({ createdAt: -1 });
+    },
+
     appointments: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Appointment.find(params).sort({ createdAt: -1 });
     },
+
     appointment: async (parent, { _id }) => {
       return Appointment.findOne({ _id });
     },
@@ -75,8 +81,20 @@ const resolvers = {
         return appointment;
       }
 
-      // throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
+
+    cancelAppointment: async (parent, args, context) => {
+        const updatedAppointment = await Appointment.findOneAndDelete(
+          { _id: args },
+          // { $pull: { appointments: { args } } },
+          // { new: true }
+        )
+        return updatedAppointment;
+    }
+      
+    
+
   },
 };
 
