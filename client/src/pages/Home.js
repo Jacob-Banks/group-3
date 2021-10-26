@@ -23,14 +23,13 @@ const Home = () => {
         <p>
          Ruff Cuts is the top choice for your dog's grooming needs. We combine years of experience with loving care to keep your furry family members looking great and feeling even better.  
         </p>
-        <p>check out services! add link</p>
-        <p>meet us! add link</p>
-        <p>find us! add link</p>
-
+        <p>We offer a wide variety of services. Check them out.</p>
+        <p>Meet our experienced team of groomers here.</p>
         <p>
           Know what you want book here!
-          <button onClick={open2Modal}>Book!</button>
-        </p>
+          </p>
+          <button className="pill" onClick={open2Modal}>Book!</button>
+        
         </div>
         <div className="col-5">
         <img width="200px" src={pupbangs} />
