@@ -138,7 +138,7 @@ nav a:hover {
   border-radius: var(--border-radius);
   background-color: var(--light);
   color: var(--dark);
-  overflow-y: scroll;
+
   background-image: url(./components/Modal/wash.jpg);
 }
 
@@ -153,6 +153,12 @@ nav a:hover {
 .card-body {
   padding: 2.5%;
   font-size: 1.4rem;
+}
+@media screen and (max-height: 640px) {
+  .card {
+    height: 90vh;
+    overflow-y: scroll;
+  }
 }
 
 /* FORM */
