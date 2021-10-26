@@ -16,13 +16,11 @@ const Home = () => {
   return (
     <>
       <div className="container-fluid ">
-        <h1>Landing page </h1>
-
+        <h3>We're ready to pamper your pup! </h3>
+        <div className="flex-row">
+          <div className="col-6">
         <p>
-          blah dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
-          dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
-          dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf blah
-          dkafljk dsaflkdfja adfslkjfak adflksjfa adskljfdka dafskalnf
+         Ruff Cuts is the top choice for your dog's grooming needs. We combine years of experience with loving care to keep your furry family members looking great and feeling even better.  
         </p>
         <p>check out services! add link</p>
         <p>meet us! add link</p>
@@ -32,6 +30,11 @@ const Home = () => {
           Know what you want book here!
           <button onClick={open2Modal}>Book!</button>
         </p>
+        </div>
+        <div className="col-6">
+        <img src="pupbangs.jpg"/>
+      </div>
+      </div>
       </div>
     </>
   );
