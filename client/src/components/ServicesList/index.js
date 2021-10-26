@@ -13,7 +13,8 @@ const ServicesList = ({ options }) => {
     },
     {
       option: "Deluxe Package",
-      service: "Cut, Brush Teeth, Nail cut, Ear Cleaning, Squeeze Butt Gland",
+      service:
+        "Cut, Wash, Brush Teeth, Nail cut, Ear Cleaning, Squeeze Butt Gland",
       price: ["Small: 60$ ", "Medium: 70$ ", "Large: 80$"],
     },
     {
