@@ -99,6 +99,7 @@ export const Modal = () => {
       console.error(e);
     }
     dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
+    window.location.href = "/profile";
   };
 
   const [addAppointment] = useMutation(ADD_APPOINTMENT);
