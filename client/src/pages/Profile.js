@@ -31,7 +31,7 @@ const Profile = () => {
   return (
     <div>
       <div>
-        <h1> My Appointments </h1>
+        <h1> {user}'s profile </h1>
       </div>
 
       <div className="flex-row justify-space-between mb-3">
