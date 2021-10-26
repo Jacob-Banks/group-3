@@ -155,6 +155,12 @@ nav a:hover {
   padding: 2.5%;
   font-size: 1.4rem;
 }
+@media screen and (max-height: 640px) {
+  .card {
+    height: 90vh;
+    overflow-y: scroll;
+  }
+}
 
 /* FORM */
 .form-label,

@@ -19,9 +19,11 @@ import Appointment from "./pages/Appointment";
 import About from "./pages/About";
 import { StoreProvider } from "./utils/GlobalState";
 import Modal from "./components/modalHolder";
+
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
+
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
   return {

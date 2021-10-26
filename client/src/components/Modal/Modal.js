@@ -106,7 +106,7 @@ export const Modal = () => {
     variables: { day: day },
   });
   const avilAppt = data?.appointments || {};
-  console.log(avilAppt);
+  // console.log(avilAppt);
 
   const changeDayHandler = (e) => {
     dispatch({ type: UPDATE_DAY, day: e.target.value });
@@ -261,23 +261,6 @@ export const Modal = () => {
     }
     //console.log(a9);
   }
-  //if a date has been selected, remove all that dates bookings  from the possible booking array.
-  // time is the object of all bookings on selected day ie time[0].time would be the time of the first booking time.groomer would be the groomer
-  // avail is the array of possible bookings times with each groomer
-  //
-  //   let match = avail.map(function (e) {
-  //     return [e.value, e.groomer];
-  //   });
-  //   if (avilAppt.length > 0) {
-  //
-  //       }
-  //     }
-  //   }
-  //}
-
-  //hideTimes = { display: "block" };
-  // }
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -394,7 +377,13 @@ export const Modal = () => {
                 </div>
               </div>
               {/* </ModalContent> */}
-              <CloseModalButton aria-label="Close modal" onClick={closeModal} />
+              <CloseModalButton
+                aria-label="Close modal"
+                onClick={() =>
+                  dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal })
+                }
+                ref={modalRef}
+              />
             </ModalWrapper>
           </animated.div>
         </Background>
