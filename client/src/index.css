@@ -71,12 +71,13 @@ h6 {
 }
 
 p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-top: 0;
 }
 
 a {
   color: var(--dark);
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -96,8 +97,8 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--secondary);
-  background-color: var(--dark);
+  color: var(--light);
+  font-weight: 800;
 }
 
 .page-title {
@@ -115,9 +116,9 @@ nav a:hover {
   margin: 5px 0;
   border-radius: var(--border-radius);
   border: none;
-  color: var(--dark);
+  color: var(--secondary);
   outline: none;
-  background-color: var(--primary);
+  background-color: var(--light);
   transition: all 0.5s;
 }
 
@@ -134,9 +135,9 @@ nav a:hover {
 /* CARDS */
 .card {
   margin: 0 0 0 0;
-  border: 3px solid var(--dark);
+  border: 2px solid var(--dark);
   border-radius: var(--border-radius);
-  background-color: var(--light);
+  background-color: var(--secondary);
   color: var(--dark);
   overflow-y: scroll;
   
@@ -145,7 +146,7 @@ nav a:hover {
 .card-header {
   color: var(--secondary);
   margin: 0;
-  background-color: var(--primary);
+  background-color: var(--light);
   padding: 0.625rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
@@ -160,7 +161,7 @@ nav a:hover {
 .form-input,
 .form-textarea {
   display: block;
-  color: black;
+  color: var(--dark);
 }
 
 .form-label {

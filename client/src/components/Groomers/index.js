@@ -49,7 +49,7 @@ const MeetTheGroomers = ({ options }) => {
           <h2>Grommers</h2>
           {groomers.map((choice, i) => (
             <div>
-              <img key={choice.photo} src={choice.photo} />
+              <img max height="300px" key={choice.photo} src={choice.photo} />
               <h5 key={choice.name}>{choice.name}</h5>
               <p key={choice.bio}>{choice.bio}</p>
 
