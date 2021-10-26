@@ -48,3 +48,11 @@ export const ADD_APPOINTMENT = gql`
     }
   }
 `;
+
+export const CANCEL_APPOINTMENT = gql `
+mutation cancelAppointment($_id: String!) {
+  cancelAppointment(_id: $_id) {
+    _id
+  }
+}
+`;
