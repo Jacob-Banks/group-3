@@ -83,6 +83,18 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
+
+    cancelAppointment: async (parent, args, context) => {
+        const updatedAppointment = await Appointment.findOneAndDelete(
+          { _id: args },
+          // { $pull: { appointments: { args } } },
+          // { new: true }
+        )
+        return updatedAppointment;
+    }
+      
+    
+
   },
 };
 

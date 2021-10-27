@@ -6,6 +6,7 @@ import Auth from "../utils/auth";
 import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_SHOWMODAL } from "../utils/actions";
 
+
 const Profile = () => {
   let get = Auth.getProfile();
   let user = get.data.username;
@@ -23,7 +24,6 @@ const Profile = () => {
     dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
   };
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -31,18 +31,18 @@ const Profile = () => {
   return (
     <div className ="appts">
       <div>
-        <h1> {user}’s Profile</h1>
+        <h1> {user}'s profile </h1>
       </div>
     
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
-        <div>
-          <button className="pill" onClick={openModal}>Click here to book an appointment</button>
-        </div>
+          <div>
+            <button className="pill" onClick={openModal}>
+              Click here to book an appointment
+            </button>
+          </div>
           <ApptList />
-            </div>
-
-
+        </div>
       </div>
       </div>
  
