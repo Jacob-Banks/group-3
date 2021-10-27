@@ -6,7 +6,7 @@ const { Provider } = StoreContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useProductReducer({
-    day: "2021-10-27",
+    day: "2021-10-28",
     time: "",
     groomer: "Anyone",
     services: "Cut and Wash",
