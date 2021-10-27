@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="container-fluid ">
+      <div className="container">
         <h3>We're ready to pamper your pup! </h3>
         <div className="flex-row">
           <div className="col-7">

@@ -29,30 +29,23 @@ const Profile = () => {
   }
 
   return (
-    <div>
+    <div className ="appts">
       <div>
-        <h1> My appointments </h1>
+        <h1> {user}’s Profile</h1>
       </div>
-
+    
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
         <div>
-          <button onClick={openModal}>Click here to book an appointment</button>
+          <button className="pill" onClick={openModal}>Click here to book an appointment</button>
         </div>
           <ApptList />
             </div>
 
-            {/* conditionally render button on current bookings */}
-            <div>
-            {/* create mutation to delete appt */}
-            <button>Cancel</button>
-            </div>
-
-  
-
 
       </div>
-    </div>
+      </div>
+ 
   );
 };
 

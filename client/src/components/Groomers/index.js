@@ -47,6 +47,7 @@ const MeetTheGroomers = ({ options }) => {
       <div>
         <ul>
           {groomers.map((choice, i) => (
+            
             <div className="flex-row">
                <div className="col-8">
               <h5 key={choice.name}>{choice.name}</h5>
@@ -60,6 +61,7 @@ const MeetTheGroomers = ({ options }) => {
               </div>
              
             </div>
+            
           ))}
           </ul>
       </div>

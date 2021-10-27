@@ -827,6 +827,7 @@ nav a:hover {
 .flex-row {
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 .flex-column {
@@ -1280,3 +1281,6 @@ nav a:hover {
     float: right
   };
 
+.appts {
+  margin-left: 40px;
+}
