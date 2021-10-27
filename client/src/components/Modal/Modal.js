@@ -330,7 +330,7 @@ export const Modal = () => {
                       </label>
                       <label className="form-label">
                         {" "}
-                        services
+                        Services
                         <select
                           className="form-input"
                           id="services"
@@ -353,7 +353,7 @@ export const Modal = () => {
                       </label>
                       <label className="form-label">
                         {" "}
-                        time{" "}
+                        Time{" "}
                         <select
                           className="form-input"
                           id="time"

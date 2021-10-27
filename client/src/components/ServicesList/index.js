@@ -18,25 +18,25 @@ const ServicesList = ({ options }) => {
       price: ["Small: 60$ ", "Medium: 70$ ", "Large: 80$"],
     },
     {
-      option: "Expert level care for you canines' chompers ",
-      service: "Brush Teeth",
+      option: "Brush Teeth ",
+      service: "Expert level care for you canines' chompers",
       price: "10$",
     },
     {
-      option: "Clip those talons! ",
-      service: "Nail Cut ",
+      option: "Nail Cut ",
+      service: "Clip those talons! ",
       price: "10$",
     },
     {
       option:
-        "Avoid the risk of perforating the ear drum or causing trauma to the ear canal",
+        "Ear Cleaning ",
 
-      service: "Ear Cleaning",
+      service: "Avoid the risk of perforating the ear drum or causing trauma to the ear canal ",
       price: "10$",
     },
     {
-      option: "IF needed we will express your pups glands its not fun.",
-      service: "Squeeze Butt Gland",
+      option: "Squeeze Butt Gland ",
+      service: "we will express your pups glands, instant relief",
       price: "20$",
     },
   ]);
@@ -87,7 +87,7 @@ const ServicesList = ({ options }) => {
   // const dog60andPlus = dog60lbOrPlus.filter((opt) => opt.options === options);
   return (
     <>
-      <div>
+      <div className="services">
         <ul>
           {/* //<h2>Small dogs 20lb</h2> */}
           {dog20lb.map((choice, i) => (

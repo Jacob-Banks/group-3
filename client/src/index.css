@@ -1284,6 +1284,7 @@ nav a:hover {
 .cancel {
   align-content: center;
 }
-.appointments {
+.appointments,
+.services {
   margin-left: 40px;
 };
