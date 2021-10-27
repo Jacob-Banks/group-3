@@ -4,7 +4,7 @@ import MeetTheGroomers from "../components/Groomers";
 const About = () => {
   return (
     <div>
-      <h1>Meet us</h1>
+      <h1>Meet our groomers</h1>
       <div>
         <MeetTheGroomers></MeetTheGroomers>
       </div>

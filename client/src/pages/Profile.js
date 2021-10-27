@@ -23,7 +23,6 @@ const Profile = () => {
     dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
   };
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -31,28 +30,21 @@ const Profile = () => {
   return (
     <div>
       <div>
-        <h1> My appointments </h1>
+        <h1> {user}'s profile </h1>
       </div>
-
+    
       <div className="flex-row justify-space-between mb-3">
-        <div className="col-12 mb-3 col-lg-8">
-        <div>
-          <button onClick={openModal}>Click here to book an appointment</button>
-        </div>
+        <div className="col-8 mb-3 col-lg-8">
+          <div className="appointments">
+            <button className="pill" center onClick={openModal}>
+              Click here to book an appointment
+            </button>
+          </div>
           <ApptList />
-            </div>
-
-            {/* conditionally render button on current bookings */}
-            <div>
-            {/* create mutation to delete appt */}
-            <button>Cancel</button>
-            </div>
-
-  
-
-
+        </div>
       </div>
-    </div>
+      </div>
+ 
   );
 };
 

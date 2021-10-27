@@ -37,6 +37,7 @@ const typeDefs = gql`
       size: String
       groomer: String
     ): Appointment
+    cancelAppointment(_id: String!): Appointment
   }
   type Auth {
     token: ID!
