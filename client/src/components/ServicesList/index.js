@@ -4,6 +4,12 @@ import React, { useState } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_SERVICES, UPDATE_SHOWMODAL } from "../../utils/actions";
 
+import pupbangs from '../assets/pupbangs.jpg'
+
+
+import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
+
 const ServicesList = ({ options }) => {
   const [dog20lbOrless] = useState([
     {
@@ -18,25 +24,25 @@ const ServicesList = ({ options }) => {
       price: ["Small: 60$ ", "Medium: 70$ ", "Large: 80$"],
     },
     {
-      option: "Expert level care for you canines' chompers ",
-      service: "Brush Teeth",
+      option: "Brush Teeth ",
+      service: "Expert level care for you canines' chompers",
       price: "10$",
     },
     {
-      option: "Clip those talons! ",
-      service: "Nail Cut ",
+      option: "Nail Cut ",
+      service: "Clip those talons! ",
       price: "10$",
     },
     {
       option:
-        "Avoid the risk of perforating the ear drum or causing trauma to the ear canal",
+        "Ear Cleaning ",
 
-      service: "Ear Cleaning",
+      service: "Avoid the risk of perforating the ear drum or causing trauma to the ear canal ",
       price: "10$",
     },
     {
-      option: "IF needed we will express your pups glands its not fun.",
-      service: "Squeeze Butt Gland",
+      option: "Squeeze Butt Gland ",
+      service: "we will express your pups glands, instant relief",
       price: "20$",
     },
   ]);
@@ -66,13 +72,13 @@ const ServicesList = ({ options }) => {
   //     price: "70$",
   //   },
   // ]);
-
+  const loggedIn = Auth.loggedIn();
   const [state, dispatch] = useStoreContext();
   const { showModal } = state;
   const openModal = (e) => {
     const { param } = e.target.dataset;
 
-    let person = dog20lb[param].service;
+    let person = dog20lb[param].option;
 
     dispatch({ type: UPDATE_SERVICES, services: person });
     dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
@@ -87,7 +93,9 @@ const ServicesList = ({ options }) => {
   // const dog60andPlus = dog60lbOrPlus.filter((opt) => opt.options === options);
   return (
     <>
-      <div>
+      <div className="services">
+        <div className="flex-row">
+          <div className="col-8">
         <ul>
           {/* //<h2>Small dogs 20lb</h2> */}
           {dog20lb.map((choice, i) => (
@@ -95,35 +103,34 @@ const ServicesList = ({ options }) => {
               <h5 key={choice.option}>{choice.option}</h5>
               <li service={choice.service}>{choice.service}</li>
               <li price={choice.price}>{choice.price}</li>
-              <button data-param={JSON.stringify(i)} onClick={openModal}>
-                Click here to Book
-              </button>
+              {loggedIn ? (
+                <button
+                  className="pill"
+                  data-param={JSON.stringify(i)}
+                  onClick={openModal}
+                >
+                  Click here to Book
+                </button>
+              ) : (
+                <>
+                  <button className="pill">
+                    <Link to="/login"> Login</Link>{" "}
+                  </button>{" "}
+                  <span>or </span>{" "}
+                  <button className="pill">
+                    <Link to="/signup">Signup</Link> To Book
+                  </button>
+                </>
+              )}
+              {/* */}
             </div>
           ))}
-
-          {/* <h2>Meduim Dogs 20lb to 60lb</h2>
-          {dog20To60lb.map((choice, i) => (
-            <div>
-              <h5 key={choice.option}>{choice.option}</h5>
-              <li key={choice.service}>{choice.service}</li>
-              <li key={choice.price}>{choice.price}</li>
-              <button data-param={JSON.stringify(i)} onClick={openModal}>
-                Click here to Book
-              </button>
-            </div>
-          ))}
-          <h2>Big Dogs 60lb and plus</h2>
-          {dog60andPlus.map((choice, i) => (
-            <div>
-              <h5 key={choice.option}>{choice.option}</h5>
-              <li key={choice.service}>{choice.service}</li>
-              <li key={choice.price}>{choice.price}</li>
-              <button data-param={JSON.stringify(i)} onClick={openModal}>
-                Click here to Book
-              </button>
-            </div>
-          ))} */}
         </ul>
+        </div>
+        <div className="col-3">
+          <img width="250px" src={pupbangs}/>
+        </div>
+        </div>
       </div>
     </>
   );
