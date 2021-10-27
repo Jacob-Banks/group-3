@@ -260,8 +260,11 @@ nav a:hover {
   /* max-width: 1200px; */
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 25px;
 }
-
+.container h3 {
+  margin-left: 15.6%;
+}
 .container-fluid {
   width: 100%;
   margin-left: 20px;
@@ -1291,13 +1294,13 @@ nav a:hover {
 .homimg {
   display: flex;
   justify-content: center;
-  height: 500px;
-  background-image: url("./components/Modal/bath.jpg");
+  height: 30vw;
+  background-image: url("./components/Modal/style.jpg");
   background-repeat: no-repeat;
   background-size: contain;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
-/* @import "react-slideshow-image/dist/styles.css";
+/* @import "react-slideshow-image/dist/style.css";
 .each-slide > div {
   display: flex;
   align-items: center;
