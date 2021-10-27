@@ -37,8 +37,8 @@ As a busy dog-owner, I want an easy way to set up grooming appointments for them
 # Installation
 
 1. Clone or fork to your own repository
-2. To install packages, run the following command from the root directory in your command line: _npm install_**
-3. To run in development mode, run the following command from the root directory in your command line: _npm run develop_**
+2. To install packages, run the following command from the root directory in your command line: **_npm install_**
+3. To run in development mode, run the following command from the root directory in your command line: **_npm run develop_**
 
 # Usage
 
@@ -55,19 +55,23 @@ For any questions, team members are reachable at the following links:
 ## Jacob Banks
 
 GitHub: [Jacob-Banks](https://github.com/Jacob-Banks)
+
 Email: kobybanks@gmail.com
 
 ## Mike Bombay
 
 GitHub: [MikeBombay](https://github.com/MikeBombay)
+
 Email: mikebombay@hotmail.com
 
 ## Anthony Cardozo
 
 GitHub: [acardozoweb](https://github.com/acardozoweb)
+
 Email: anthonyccardozo@gmail.com
 
 ## Rayan Diouf
 
 GitHub: [Rd2324](https://github.com/Rd2423)
+
 Email: rayandiouf0@gmail.com
