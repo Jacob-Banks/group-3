@@ -95,7 +95,7 @@ const ServicesList = ({ options }) => {
               <h5 key={choice.option}>{choice.option}</h5>
               <li service={choice.service}>{choice.service}</li>
               <li price={choice.price}>{choice.price}</li>
-              <button data-param={JSON.stringify(i)} onClick={openModal}>
+              <button className="pill" data-param={JSON.stringify(i)} onClick={openModal}>
                 Click here to Book
               </button>
             </div>

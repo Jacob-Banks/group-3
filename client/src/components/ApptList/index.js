@@ -50,7 +50,7 @@ const ApptList = () => {
   };
 
   return (
-    <div>
+    <div className="appointments">
       {!appointments.length ? (
         <h3>No upcoming appointments. Book now so we can pamper your pup!</h3>
       ) : (
@@ -68,13 +68,14 @@ const ApptList = () => {
                 You booked a {appointment.services} for your {appointment.size}{" "}
                 sized dog, with {appointment.groomer}
               </p>
-            </div>
-            <div>
-              <button onClick={() => cancelAppointment(appointments[i]._id)}>
+              <p>
+              <button className="pill" onClick={() => cancelAppointment(appointments[i]._id)}>
                 {" "}
                 Cancel
               </button>
-            </div>
+              </p>
+              </div>
+            
           </div>
         ))}
     </div>
