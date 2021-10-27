@@ -16,6 +16,9 @@ const ApptList = () => {
 
   const appointments = userData.appointments;
 
+  // const apptCount = appointments.length
+  // console.log(apptCount)
+
   // console.log(appointments[0]._id);
 
   const [removeAppt, { error }] = useMutation(CANCEL_APPOINTMENT);
@@ -48,8 +51,11 @@ const ApptList = () => {
 
   return (
     <div>
-
-      <h3>We can't wait to pamper your pup!</h3>
+      {!appointments.length ? (
+        <h3>No upcoming appointments. Book now so we can pamper your pup!</h3>
+      ) : (
+        <h3>Here are you most recent bookings:</h3>
+      )}
 
       {appointments &&
         appointments.map((appointment, i) => (
