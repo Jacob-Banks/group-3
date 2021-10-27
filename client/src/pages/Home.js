@@ -2,9 +2,11 @@ import React from "react";
 
 import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_SHOWMODAL } from "../utils/actions";
+
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import wash from "../components/Modal/bath.jpg";
+
 const Home = () => {
   const [state, dispatch] = useStoreContext();
   const { showModal } = state;
@@ -19,6 +21,7 @@ const Home = () => {
         <h3>We're ready to pamper your pup! </h3>
 
         <div className="flex-row">
+
           <div className="col-2"></div>
           <div className="col-8">
             <div className="homimg">{/* <img src={wash} /> */}</div>
@@ -54,6 +57,7 @@ const Home = () => {
             )}
           </div>
         </div>
+
       </div>
     </>
   );

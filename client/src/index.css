@@ -902,6 +902,7 @@ nav a:hover {
 
 .col-8 {
   flex: 0 0 calc(100% * 8 / 12 - 0.5%);
+  padding-right: 12px;
 }
 
 .col-9 {
@@ -1282,9 +1283,13 @@ nav a:hover {
 .cancel {
   align-content: center;
 }
-.appointments {
+.appointments,
+.services {
   margin-left: 40px;
 }
+
+
+
 .homimg {
   display: flex;
   justify-content: center;
