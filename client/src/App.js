@@ -15,7 +15,7 @@ import Services from "./pages/Services";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
-import Appointment from "./pages/Appointment";
+
 import About from "./pages/About";
 import { StoreProvider } from "./utils/GlobalState";
 import Modal from "./components/modalHolder";
@@ -53,7 +53,7 @@ function App() {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/Services/" component={Services} />
-              <Route exact path="/Appointment/" component={Appointment} />
+
               <Route exact path="/About/" component={About} />
               <Route component={NoMatch} />
             </Switch>

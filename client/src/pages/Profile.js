@@ -9,7 +9,7 @@ import { UPDATE_SHOWMODAL } from "../utils/actions";
 const Profile = () => {
   let get = Auth.getProfile();
   let user = get.data.username;
-  console.log(user);
+  // console.log(user);
 
   const { loading, data } = useQuery(QUERY_APPOINTMENTS_USER, {
     variables: { username: user },
@@ -32,19 +32,18 @@ const Profile = () => {
       <div>
         <h1> {user}'s profile </h1>
       </div>
-    
+
       <div className="flex-row justify-space-between mb-3">
         <div className="col-8 mb-3 col-lg-8">
           <div className="appointments">
-            <button className="pill" center onClick={openModal}>
+            <button className="pill" onClick={openModal}>
               Click here to book an appointment
             </button>
           </div>
           <ApptList />
         </div>
       </div>
-      </div>
- 
+    </div>
   );
 };
 

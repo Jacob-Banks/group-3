@@ -7,7 +7,7 @@ import { CANCEL_APPOINTMENT } from "../../utils/mutations";
 const ApptList = () => {
   let get = auth.getProfile();
   let user = get.data.username;
-  console.log(user);
+  // console.log(user);
 
   const { loading, data } = useQuery(QUERY_APPOINTMENTS_USER, {
     variables: { username: user },
@@ -69,13 +69,15 @@ const ApptList = () => {
                 sized dog, with {appointment.groomer}
               </p>
               <p>
-              <button className="pill" onClick={() => cancelAppointment(appointments[i]._id)}>
-                {" "}
-                Cancel
-              </button>
+                <button
+                  className="pill"
+                  onClick={() => cancelAppointment(appointments[i]._id)}
+                >
+                  {" "}
+                  Cancel
+                </button>
               </p>
-              </div>
-            
+            </div>
           </div>
         ))}
     </div>

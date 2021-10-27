@@ -67,7 +67,7 @@ export const Modal = () => {
     if (modalRef.current === e.target) {
       dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
     }
-    console.log("close?");
+    // console.log("close?");
   };
 
   // let hideTimes = { display: "block" };
@@ -88,18 +88,21 @@ export const Modal = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    if (time) {
+      try {
+        // add  to database
 
-    try {
-      // add  to database
-
-      await addAppointment({
-        variables: { day, size, time, services, groomer },
-      });
-    } catch (e) {
-      console.error(e);
+        await addAppointment({
+          variables: { day, size, time, services, groomer },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+      dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
+      window.location.href = "/profile";
+    } else {
+      alert("please complete the form");
     }
-    dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
-    window.location.href = "/profile";
   };
 
   const [addAppointment] = useMutation(ADD_APPOINTMENT);
