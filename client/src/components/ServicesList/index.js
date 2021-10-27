@@ -73,7 +73,7 @@ const ServicesList = ({ options }) => {
   const openModal = (e) => {
     const { param } = e.target.dataset;
 
-    let person = dog20lb[param].service;
+    let person = dog20lb[param].option;
 
     dispatch({ type: UPDATE_SERVICES, services: person });
     dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });

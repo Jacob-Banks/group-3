@@ -4,7 +4,7 @@ import React from "react";
 //import { GlobalStyle } from "../globalStyles";
 import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_SHOWMODAL } from "../utils/actions";
-import chows from './assets/chows.jpg'
+
 
 const Home = () => {
   const [state, dispatch] = useStoreContext();
@@ -19,7 +19,7 @@ const Home = () => {
       <div className="container">
         <h3>We're ready to pamper your pup! </h3>
         <div className="flex-row">
-          <div className="col-7">
+          <div className="col-6">
         <p>
          Ruff Cuts is the top choice for your dog's grooming needs. We combine years of experience with loving care to keep your furry family members looking great and feeling even better.  
         </p>
@@ -31,8 +31,8 @@ const Home = () => {
           <button className="pill" onClick={open2Modal}>Book!</button>
         
         </div>
-        <div className="col-5">
-        <img width="300px" src={chows} />
+        <div className="col-6">
+        
       </div>
       </div>
       </div>
