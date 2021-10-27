@@ -17,7 +17,7 @@ A simple web app to book grooming & care services for your favorite canine frien
 
 # User Story
 
-As a busy dog-owner, I want an easy way to solicit grooming services so that I kn
+As a busy dog-owner, I want an easy way to set up grooming appointments for them so that they're looking and feeling their best.
 
 # Technologies Used
 
@@ -37,8 +37,8 @@ As a busy dog-owner, I want an easy way to solicit grooming services so that I k
 # Installation
 
 1. Clone or fork to your own repository
-2. To install packages, run the following command from the root directory in your command line: npm install
-3. To run in development mode, run the following command from the root directory in your command line: npm run develop
+2. To install packages, run the following command from the root directory in your command line: _npm install_**
+3. To run in development mode, run the following command from the root directory in your command line: _npm run develop_**
 
 # Usage
 
