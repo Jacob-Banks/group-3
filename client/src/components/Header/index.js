@@ -5,7 +5,7 @@ import { UPDATE_SHOWMODAL } from "../../utils/actions";
 import Auth from "../../utils/auth";
 import { useStoreContext } from "../../utils/GlobalState";
 //import { Modal } from "../Modal/Modal";
-import logo from '../assets/logo.png'
+import logo from "../assets/logo.png";
 
 const Header = () => {
   const logout = (event) => {
@@ -25,18 +25,18 @@ const Header = () => {
     >
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <Link to="/">
-          <img width ="220px"src={logo}/>
+          <img width="220px" src={logo} />
         </Link>
 
         <nav className="text-center">
-          <Link to="#header" onClick={openModal}>
-            Book
-          </Link>
           <Link to="/services">Services</Link>
 
           <Link to="/about">Groomers</Link>
           {Auth.loggedIn() ? (
             <>
+              <Link to="#header" onClick={openModal}>
+                Book
+              </Link>
               <Link to="/profile">Me</Link>
               <a href="/" onClick={logout}>
                 Logout

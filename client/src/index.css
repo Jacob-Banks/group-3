@@ -1,10 +1,10 @@
 :root {
-  --primary: #1E96A6;
-  --secondary: #B5D9D9;
-  --tertiary: #F6F5F3;
-  --quatrinary: #F6F5F3;
-  --light: #795D43;
-  --dark:  rgb(65, 37, 24);
+  --primary: #1e96a6;
+  --secondary: #b5d9d9;
+  --tertiary: #f6f5f3;
+  --quatrinary: #f6f5f3;
+  --light: #795d43;
+  --dark: rgb(65, 37, 24);
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -34,7 +34,9 @@ body {
   background-color: #f3fffee1;
 }
 
-h1 {margin-left: 40px;}
+h1 {
+  margin-left: 40px;
+}
 h2,
 h3,
 h4,
@@ -108,8 +110,7 @@ nav a:hover {
   font-size: 2.5rem;
 }
 
-.btn
- {
+.btn {
   font-size: 1.3rem;
   text-decoration: none;
   padding: 0.5rem 1.2rem;
@@ -132,9 +133,9 @@ nav a:hover {
 }
 
 .pill {
-  font-size: .75rem;
+  font-size: 0.75rem;
   text-decoration: none;
-  padding: 0.25rem .5rem;
+  padding: 0.25rem 0.5rem;
   border-radius: var(--border-radius);
   border: none;
   color: var(--secondary);
@@ -156,8 +157,6 @@ nav a:hover {
   border-radius: var(--border-radius);
   background-color: var(--secondary);
   color: var(--dark);
-  
-  
 }
 
 .card-header {
@@ -828,7 +827,6 @@ nav a:hover {
 .flex-row {
   display: flex;
   flex-wrap: wrap;
-  
 }
 
 .flex-column {
@@ -1279,9 +1277,9 @@ nav a:hover {
   }
 }
 
-  .groomerImg {
-    float: right
-  }
+.groomerImg {
+  float: right;
+}
 .cancel {
   align-content: center;
 }
@@ -1290,3 +1288,27 @@ nav a:hover {
   margin-left: 40px;
 }
 
+
+
+.homimg {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  background-image: url("./components/Modal/bath.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-bottom: 25px;
+}
+/* @import "react-slideshow-image/dist/styles.css";
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 500px;
+  margin-bottom: 20px;
+}
+.slider {
+  width: 95vw;
+} */

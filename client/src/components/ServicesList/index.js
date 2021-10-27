@@ -3,7 +3,12 @@ import React, { useState } from "react";
 //import { GlobalStyle } from "../globalStyles";
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_SERVICES, UPDATE_SHOWMODAL } from "../../utils/actions";
+
 import pupbangs from '../assets/pupbangs.jpg'
+
+
+import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
 
 const ServicesList = ({ options }) => {
   const [dog20lbOrless] = useState([
@@ -67,7 +72,7 @@ const ServicesList = ({ options }) => {
   //     price: "70$",
   //   },
   // ]);
-
+  const loggedIn = Auth.loggedIn();
   const [state, dispatch] = useStoreContext();
   const { showModal } = state;
   const openModal = (e) => {
@@ -98,9 +103,26 @@ const ServicesList = ({ options }) => {
               <h5 key={choice.option}>{choice.option}</h5>
               <li service={choice.service}>{choice.service}</li>
               <li price={choice.price}>{choice.price}</li>
-              <button className="pill" data-param={JSON.stringify(i)} onClick={openModal}>
-                Click here to Book
-              </button>
+              {loggedIn ? (
+                <button
+                  className="pill"
+                  data-param={JSON.stringify(i)}
+                  onClick={openModal}
+                >
+                  Click here to Book
+                </button>
+              ) : (
+                <>
+                  <button className="pill">
+                    <Link to="/login"> Login</Link>{" "}
+                  </button>{" "}
+                  <span>or </span>{" "}
+                  <button className="pill">
+                    <Link to="/signup">Signup</Link> To Book
+                  </button>
+                </>
+              )}
+              {/* */}
             </div>
           ))}
         </ul>

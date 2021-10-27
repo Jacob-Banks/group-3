@@ -6,7 +6,6 @@ import Auth from "../utils/auth";
 import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_SHOWMODAL } from "../utils/actions";
 
-
 const Profile = () => {
   let get = Auth.getProfile();
   let user = get.data.username;
