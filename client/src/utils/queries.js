@@ -59,3 +59,17 @@ export const QUERY_APPOINTMENTS = gql`
     }
   }
 `;
+
+export const QUERY_APPOINTMENTS_USER = gql`
+  query appointments($username: String!) {
+    appointments(username: $username) {
+      _id
+      username
+      day
+      time
+      services
+      size
+      groomer
+    }
+  }
+`;

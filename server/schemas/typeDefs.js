@@ -14,7 +14,7 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     appointment(_id: ID!): Appointment
-    appointments(day: String): [Appointment]
+    appointments(day: String, username:String): [Appointment]
   }
 
   type Appointment {
@@ -37,6 +37,7 @@ const typeDefs = gql`
       size: String
       groomer: String
     ): Appointment
+    cancelAppointment(_id: String!): Appointment
   }
   type Auth {
     token: ID!
