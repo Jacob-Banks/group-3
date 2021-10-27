@@ -5,6 +5,7 @@ import {
   UPDATE_DAY,
   UPDATE_SIZE,
   UPDATE_SERVICES,
+  UPDATE_SHOWMODAL,
 } from "./actions";
 
 export const reducer = (state, action) => {
@@ -35,6 +36,11 @@ export const reducer = (state, action) => {
       return {
         ...state,
         day: action.day,
+      };
+    case UPDATE_SHOWMODAL:
+      return {
+        ...state,
+        showModal: action.showModal,
       };
     default:
       return state;

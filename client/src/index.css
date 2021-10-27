@@ -138,7 +138,8 @@ nav a:hover {
   border-radius: var(--border-radius);
   background-color: var(--light);
   color: var(--dark);
-  overflow-y: scroll;
+
+  background-image: url(./components/Modal/wash.jpg);
 }
 
 .card-header {
@@ -153,12 +154,19 @@ nav a:hover {
   padding: 2.5%;
   font-size: 1.4rem;
 }
+@media screen and (max-height: 640px) {
+  .card {
+    height: 90vh;
+    overflow-y: scroll;
+  }
+}
 
 /* FORM */
 .form-label,
 .form-input,
 .form-textarea {
   display: block;
+  color: black;
 }
 
 .form-label {
@@ -232,7 +240,7 @@ nav a:hover {
 /* LAYOUT */
 .container {
   width: 95%;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin-left: auto;
   margin-right: auto;
 }

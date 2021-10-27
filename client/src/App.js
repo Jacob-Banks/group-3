@@ -18,9 +18,12 @@ import Home from "./pages/Home";
 import Appointment from "./pages/Appointment";
 import About from "./pages/About";
 import { StoreProvider } from "./utils/GlobalState";
+import Modal from "./components/modalHolder";
+
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
+
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
   return {
@@ -41,6 +44,7 @@ function App() {
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <StoreProvider>
+            <Modal />
             <Header />
             {/* <div className="container"> */}
             <Switch>

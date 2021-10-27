@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 import { MdClose } from "react-icons/md";
@@ -11,8 +11,10 @@ import {
   UPDATE_GROOMER,
   UPDATE_SERVICES,
   UPDATE_SIZE,
+  UPDATE_SHOWMODAL,
   UPDATE_TIME,
 } from "../../utils/actions";
+
 const Background = styled.div`
   width: 100%;
   height: 100%;
@@ -21,7 +23,7 @@ const Background = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const ModalWrapper = styled.div`
@@ -46,7 +48,11 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-export const Modal = ({ showModal, setShowModal }) => {
+export const Modal = () => {
+  const [state, dispatch] = useStoreContext();
+
+  const { day, size, time, services, groomer, showModal } = state;
+
   const modalRef = useRef();
 
   const animation = useSpring({
@@ -59,24 +65,10 @@ export const Modal = ({ showModal, setShowModal }) => {
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
-      setShowModal(false);
+      dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
     }
+    console.log("close?");
   };
-
-  const keyPress = useCallback(
-    (e) => {
-      if (e.key === "Escape" && showModal) {
-        setShowModal(false);
-        console.log("I pressed");
-      }
-    },
-    [setShowModal, showModal]
-  );
-
-  useEffect(() => {
-    document.addEventListener("keydown", keyPress);
-    return () => document.removeEventListener("keydown", keyPress);
-  }, [keyPress]);
 
   // let hideTimes = { display: "block" };
   var today = new Date();
@@ -93,9 +85,6 @@ export const Modal = ({ showModal, setShowModal }) => {
   }
 
   today = yyyy + "-" + mm + "-" + dd;
-  const [state, dispatch] = useStoreContext();
-
-  const { day, size, time, services, groomer } = state;
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -109,7 +98,7 @@ export const Modal = ({ showModal, setShowModal }) => {
     } catch (e) {
       console.error(e);
     }
-    setShowModal((prev) => !prev);
+    dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
   };
 
   const [addAppointment] = useMutation(ADD_APPOINTMENT);
@@ -117,7 +106,7 @@ export const Modal = ({ showModal, setShowModal }) => {
     variables: { day: day },
   });
   const avilAppt = data?.appointments || {};
-  console.log(avilAppt.length);
+  // console.log(avilAppt);
 
   const changeDayHandler = (e) => {
     dispatch({ type: UPDATE_DAY, day: e.target.value });
@@ -272,23 +261,6 @@ export const Modal = ({ showModal, setShowModal }) => {
     }
     //console.log(a9);
   }
-  //if a date has been selected, remove all that dates bookings  from the possible booking array.
-  // time is the object of all bookings on selected day ie time[0].time would be the time of the first booking time.groomer would be the groomer
-  // avail is the array of possible bookings times with each groomer
-  //
-  //   let match = avail.map(function (e) {
-  //     return [e.value, e.groomer];
-  //   });
-  //   if (avilAppt.length > 0) {
-  //
-  //       }
-  //     }
-  //   }
-  //}
-
-  //hideTimes = { display: "block" };
-  // }
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -407,7 +379,10 @@ export const Modal = ({ showModal, setShowModal }) => {
               {/* </ModalContent> */}
               <CloseModalButton
                 aria-label="Close modal"
-                onClick={() => setShowModal((prev) => !prev)}
+                onClick={() =>
+                  dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal })
+                }
+                ref={modalRef}
               />
             </ModalWrapper>
           </animated.div>
