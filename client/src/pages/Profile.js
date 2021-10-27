@@ -29,15 +29,15 @@ const Profile = () => {
   }
 
   return (
-    <div className ="appts">
+    <div>
       <div>
         <h1> {user}'s profile </h1>
       </div>
     
       <div className="flex-row justify-space-between mb-3">
-        <div className="col-12 mb-3 col-lg-8">
-          <div>
-            <button className="pill" onClick={openModal}>
+        <div className="col-8 mb-3 col-lg-8">
+          <div className="appointments">
+            <button className="pill" center onClick={openModal}>
               Click here to book an appointment
             </button>
           </div>

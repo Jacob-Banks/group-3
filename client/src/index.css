@@ -138,7 +138,8 @@ nav a:hover {
   border-radius: var(--border-radius);
   border: none;
   color: var(--secondary);
-  outline: none;
+  outline: 2px;
+  outline-color: var(--dark);
   background-color: var(--primary);
   transition: all 0.5s;
 }
@@ -1279,8 +1280,10 @@ nav a:hover {
 
   .groomerImg {
     float: right
-  };
-
-.appts {
-  margin-left: 40px;
+  }
+.cancel {
+  align-content: center;
 }
+.appointments {
+  margin-left: 40px;
+};
