@@ -4,7 +4,7 @@ import React from "react";
 //import { GlobalStyle } from "../globalStyles";
 import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_SHOWMODAL } from "../utils/actions";
-import pupbangs from './assets/pupbangs.jpg'
+import chows from './assets/chows.jpg'
 
 const Home = () => {
   const [state, dispatch] = useStoreContext();
@@ -32,7 +32,7 @@ const Home = () => {
         
         </div>
         <div className="col-5">
-        <img width="200px" src={pupbangs} />
+        <img width="300px" src={chows} />
       </div>
       </div>
       </div>

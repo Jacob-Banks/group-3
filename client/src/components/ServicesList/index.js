@@ -3,6 +3,7 @@ import React, { useState } from "react";
 //import { GlobalStyle } from "../globalStyles";
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_SERVICES, UPDATE_SHOWMODAL } from "../../utils/actions";
+import pupbangs from '../assets/pupbangs.jpg'
 
 const ServicesList = ({ options }) => {
   const [dog20lbOrless] = useState([
@@ -88,6 +89,8 @@ const ServicesList = ({ options }) => {
   return (
     <>
       <div className="services">
+        <div className="flex-row">
+          <div className="col-8">
         <ul>
           {/* //<h2>Small dogs 20lb</h2> */}
           {dog20lb.map((choice, i) => (
@@ -100,30 +103,12 @@ const ServicesList = ({ options }) => {
               </button>
             </div>
           ))}
-
-          {/* <h2>Meduim Dogs 20lb to 60lb</h2>
-          {dog20To60lb.map((choice, i) => (
-            <div>
-              <h5 key={choice.option}>{choice.option}</h5>
-              <li key={choice.service}>{choice.service}</li>
-              <li key={choice.price}>{choice.price}</li>
-              <button data-param={JSON.stringify(i)} onClick={openModal}>
-                Click here to Book
-              </button>
-            </div>
-          ))}
-          <h2>Big Dogs 60lb and plus</h2>
-          {dog60andPlus.map((choice, i) => (
-            <div>
-              <h5 key={choice.option}>{choice.option}</h5>
-              <li key={choice.service}>{choice.service}</li>
-              <li key={choice.price}>{choice.price}</li>
-              <button data-param={JSON.stringify(i)} onClick={openModal}>
-                Click here to Book
-              </button>
-            </div>
-          ))} */}
         </ul>
+        </div>
+        <div className="col-3">
+          <img width="250px" src={pupbangs}/>
+        </div>
+        </div>
       </div>
     </>
   );
