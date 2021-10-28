@@ -13,7 +13,7 @@ A simple web app to book grooming & care services for your favorite canine frien
 * [Contributions](#contributions)
 * [Questions](*questions)
 
-(screenshot)
+<img width="784" alt="0" src="https://user-images.githubusercontent.com/83983013/139158402-f8922e92-f167-40c4-8f89-3eb871a9bf8a.png">
 
 # User Story
 
@@ -42,7 +42,7 @@ As a busy dog-owner, I want an easy way to set up grooming appointments for them
 
 # Usage
 
-Try out the latest deployment at this link: 
+Try out the latest deployment at this link: https://still-plateau-57843.herokuapp.com/
 
 # Contributions
 
