@@ -4,19 +4,6 @@ const { gql } = require("apollo-server-express");
 // create our typeDefs
 
 const typeDefs = gql`
-  type User {
-    _id: ID
-    username: String
-    email: String
-  }
-  type Query {
-    me: User
-    users: [User]
-    user(username: String!): User
-    appointment(_id: ID!): Appointment
-    appointments(day: String, username:String): [Appointment]
-  }
-
   type Appointment {
     _id: ID
     day: String
@@ -26,6 +13,25 @@ const typeDefs = gql`
     services: String
     size: String
     groomer: String
+  }
+  type User {
+    _id: ID
+    username: String
+    email: String
+    appointments: [Appointment]
+  }
+
+  type Query {
+    me: User
+    users: [User]
+    user(username: String!): User
+    appointment(_id: ID!): Appointment
+    appointments(day: String): [Appointment]
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
   type Mutation {
     login(email: String!, password: String!): Auth
@@ -38,10 +44,6 @@ const typeDefs = gql`
       groomer: String
     ): Appointment
     cancelAppointment(_id: String!): Appointment
-  }
-  type Auth {
-    token: ID!
-    user: User
   }
 `;
 

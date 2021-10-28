@@ -6,6 +6,15 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      appointments {
+        day
+        time
+        _id
+        createdAt
+        groomer
+        services
+        size
+      }
     }
   }
 `;
@@ -17,34 +26,7 @@ export const QUERY_APPOINTMENTS_DAY = gql`
     }
   }
 `;
-export const QUERY_ME = gql`
-  {
-    me {
-      _id
-      username
-      email
 
-      appointments {
-        _id
-        day
-        time
-        services
-        size
-        createdAt
-        groomer
-      }
-    }
-  }
-`;
-export const QUERY_ME_BASIC = gql`
-  {
-    me {
-      _id
-      username
-      email
-    }
-  }
-`;
 export const QUERY_APPOINTMENTS = gql`
   {
     appointment {
@@ -56,20 +38,6 @@ export const QUERY_APPOINTMENTS = gql`
       services: String
       size: String
       groomer: String
-    }
-  }
-`;
-
-export const QUERY_APPOINTMENTS_USER = gql`
-  query appointments($username: String!) {
-    appointments(username: $username) {
-      _id
-      username
-      day
-      time
-      services
-      size
-      groomer
     }
   }
 `;

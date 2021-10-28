@@ -1,7 +1,5 @@
 import React from "react";
 import ApptList from "../components/ApptList";
-import { useQuery } from "@apollo/client";
-import { QUERY_APPOINTMENTS_USER } from "../utils/queries";
 import Auth from "../utils/auth";
 import { useStoreContext } from "../utils/GlobalState";
 import { UPDATE_SHOWMODAL } from "../utils/actions";
@@ -11,21 +9,11 @@ const Profile = () => {
   let user = get.data.username;
   // console.log(user);
 
-  const { loading, data } = useQuery(QUERY_APPOINTMENTS_USER, {
-    variables: { username: user },
-  });
-  const userData = data || [];
-  // console.log(userData);
-
   const [state, dispatch] = useStoreContext();
   const { showModal } = state;
   const openModal = (e) => {
     dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal });
   };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>

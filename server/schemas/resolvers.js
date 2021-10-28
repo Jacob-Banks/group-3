@@ -18,13 +18,13 @@ const resolvers = {
 
     appointments: async (parent, { day }) => {
       const params = day ? { day } : {};
-      return Appointment.find(params).sort({ createdAt: -1 });
+      return Appointment.find(params).sort({ day: -1 });
     },
 
-    appointments: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Appointment.find(params).sort({ createdAt: -1 });
-    },
+    // appointments: async (parent, { username }) => {
+    //   const params = username ? { username } : {};
+    //   return Appointment.find(params).sort({ createdAt: -1 });
+    // },
 
     appointment: async (parent, { _id }) => {
       return Appointment.findOne({ _id });
@@ -36,9 +36,9 @@ const resolvers = {
 
     // get a user by username
     user: async (parent, { username }) => {
-      return User.findOne({ username }).select("-__v -password");
-
-      //.populate("appointments");
+      return User.findOne({ username })
+        .select("-__v -password")
+        .populate("appointments");
     },
   },
   Mutation: {
@@ -85,16 +85,13 @@ const resolvers = {
     },
 
     cancelAppointment: async (parent, args, context) => {
-        const updatedAppointment = await Appointment.findOneAndDelete(
-          { _id: args },
-          // { $pull: { appointments: { args } } },
-          // { new: true }
-        )
-        return updatedAppointment;
-    }
-      
-    
-
+      const updatedAppointment = await Appointment.findOneAndDelete(
+        { _id: args }
+        // { $pull: { appointments: { args } } },
+        // { new: true }
+      );
+      return updatedAppointment;
+    },
   },
 };
 

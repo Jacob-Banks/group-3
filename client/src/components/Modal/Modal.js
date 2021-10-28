@@ -386,7 +386,6 @@ export const Modal = () => {
                 onClick={() =>
                   dispatch({ type: UPDATE_SHOWMODAL, showModal: !showModal })
                 }
-                ref={modalRef}
               />
             </ModalWrapper>
           </animated.div>

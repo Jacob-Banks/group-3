@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_APPOINTMENTS_USER } from "../../utils/queries";
+import { QUERY_USER } from "../../utils/queries";
 import auth from "../../utils/auth";
 import { CANCEL_APPOINTMENT } from "../../utils/mutations";
 
@@ -9,14 +9,17 @@ const ApptList = () => {
   let user = get.data.username;
   // console.log(user);
 
-  const { loading, data } = useQuery(QUERY_APPOINTMENTS_USER, {
+  const { loading, data } = useQuery(QUERY_USER, {
     variables: { username: user },
   });
   const userData = data || [];
+  let appointments = [];
+  if (userData.user) {
+    console.log(userData.user.appointments);
+    appointments = userData.user.appointments;
+  }
 
-  const appointments = userData.appointments;
-
-  // const apptCount = appointments.length
+  //  const apptCount = appointments.length;
   // console.log(apptCount)
 
   // console.log(appointments[0]._id);
